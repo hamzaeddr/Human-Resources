@@ -1,0 +1,36 @@
+
+html {
+    font-size: 62.5% !important;
+}
+.activeSecondUrl a span{
+    color: #f0bc74 !important;
+}
+input {
+    outline: none !important;
+    outline-offset: none !important;
+}
+.navbar .select2-container {
+    width:50rem !important;
+}
+.select2-container {
+    width: 100% !important;
+    padding: 0;
+}
+.modal span.select2-container {
+    // z-index:10050;
+}
+#rib::-webkit-outer-spin-button,
+#rib::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.checkClass {
+    position:absolute; 
+    right:20px; top:56%;
+    font-size: 1.3rem;
+}
+@import "./includes/sweetalert2";
+@import "./includes/notyf";
+@import "~bootstrap/scss/bootstrap";
+@import "./includes/datatable";
+@import "./includes/volt";

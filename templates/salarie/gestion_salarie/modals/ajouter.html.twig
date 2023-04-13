@@ -1,0 +1,94 @@
+<style>
+        
+.come-from-modal.left .modal-dialog,
+.come-from-modal.right .modal-dialog {
+    position: fixed;
+    margin: auto;
+    height: 100%;
+    -webkit-transform: translate3d(0%, 0, 0);
+    -ms-transform: translate3d(0%, 0, 0);
+    -o-transform: translate3d(0%, 0, 0);
+    transform: translate3d(0%, 0, 0);
+}
+
+.come-from-modal.left .modal-content,
+.come-from-modal.right .modal-content {
+    height: 100%;
+    overflow-y: auto;
+    border-radius: 0px;
+}
+
+.come-from-modal.left .modal-body,
+.come-from-modal.right .modal-body {
+    padding: 15px 15px 80px;
+}
+.come-from-modal.right.fade .modal-dialog {
+    right: 0px;
+    -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+    -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+    -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+    transition: opacity 0.3s linear, right 0.3s ease-out;
+}
+
+.come-from-modal.right.fade.in .modal-dialog {
+    right: 0;
+}
+	
+</style>
+<div class="modal right come-from-modal fade" id="modal_ajouter" aria-labelledby="modal-default" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-top" style="max-width:900px !important" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Ajouter un salarie</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-header">
+                        <ul class="nav nav-pills">                
+                            <li class="nav-item mr-2">
+                                <a href="#etat_civil" id="etatcivil" class="nav-link active">Etat Civil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#contrat" id="contract" class="nav-link noclick" >Contrat</a>
+                            </li>                
+                            <li class="nav-item">
+                                <a href="#cnss_rib" id="cnss_rib" class="nav-link noclick">Cnss Rib</a>
+                            </li>                
+                            <li class="nav-item">
+                                <a href="#plus_info" id="plus_info" class="nav-link noclick">Plus Info</a>
+                            </li>                
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                    <div class="tab-content">
+                            {# <form> #}
+                                <div class="tab-pane fade show active" id="etat_civil">
+                        <form  id="new_salarie">
+
+                                    {% include 'salarie/gestion_salarie/pages/etat_civil.html.twig' %}     
+                        </form>
+
+                                </div>
+
+                                <div class="tab-pane fade" id="contrat">
+                                    {% include 'salarie/gestion_salarie/pages/contrat.html.twig' %}                            
+                                </div>
+                                <div class="tab-pane fade" id="cnss_rib">
+                                    {% include 'salarie/gestion_salarie/pages/cnss_rib.html.twig' %}                            
+                                </div>
+                                <div class="tab-pane fade" id="plus_info">
+                                    {% include 'salarie/gestion_salarie/pages/plus_info.html.twig' %}                            
+                                </div>
+                            {# </form> #}
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary" form="new_salarie">Enregistre</button>
+                <button type="button" class="btn btn-link text-gray-600 me-auto" data-bs-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>

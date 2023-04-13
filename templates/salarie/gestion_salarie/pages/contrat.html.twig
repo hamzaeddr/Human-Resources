@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-md-4 mb-2">
+        <label for="nature_contrat">Nature Contrat (*)</label>
+        <select class="select nature_contrat" name="nature_contrat" id="nature_contrat" >
+            
+        </select>
+    </div>
+    <div class="col-md-4 mb-2">
+        <label for="duree_contrat">Durée contrat (*)</label>
+        <select class="select duree_contrat" name="duree_contrat" id="duree_contrat" >
+           
+        </select>
+    </div>
+    <div class="col-md-4 mb-2">
+        <label for="date_contrat">Date contrat (*)</label>
+        <input type="date" name="date_contrat" id="date_contrat" class="form-control">
+    </div>
+    <div class="col-md-4 mb-2">
+        <label for="affectation">Affectation (*)</label>
+        <select class="select" name="affectation" id="affectation" >
+            <option value="" selected>Choix affectation</option>
+            {% for dossier in app.session.get('dossiers') %}
+                <option value="{{dossier.id}}">{{dossier.abreviation}} - {{dossier.designation}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-4 mb-2">
+        <label for="profile">Profile (*)</label>
+        <select class="select profile" name="profile" id="profile" >
+            
+        </select>
+    </div>
+    <div class="col-md-4 mb-2">
+        <label for="bareme">Baréme (*)</label>
+        <select class="select bareme" name="bareme" id="bareme" >
+            
+        </select>
+    </div>
+    <div class="col-md-4 mb-2">
+        <label for="fonction">Fonction (*)</label>
+        <select class="select" name="fonction" id="fonction" >
+            <option value="" selected>Choix fonction</option>
+            {% for fonction in fonctions %}
+                <option value="{{fonction.id}}">{{fonction.designation}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-4 mb-2">
+        <label for="salaire_grille">Salaire Grille: </label>
+        <input disabled type="number"  name="salaire_grille" id="salaire_grille" class="form-control">
+    </div>
+    <div class="col-md-4 mb-2">
+        <label for="salaire_affecte">Salaire Affecté: </label>
+        <input type="number" name="salaire_affecte" id="salaire_affecte" class="form-control">
+    </div>
+    
+    <div class="col-md-4 mb-2">
+        <label for="ppc">PPC (*)</label>
+        <input disabled type="number" name="ppc" id="ppc" class="form-control">
+    </div>
+    <div class="col-md-4 mb-2">
+        <label for="rpc">RPC (*)</label>
+        <input disabled type="number" name="rpc" id="rpc" class="form-control">
+    </div>
+    
+</div>
