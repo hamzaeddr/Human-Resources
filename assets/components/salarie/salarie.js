@@ -2,6 +2,18 @@
 $(document).ready(function  () {
     diplomes =  [];
     id_diplome = 0;
+
+    function hide_show(hide,hide_2,show,show_2){
+        $("body " +show).removeClass('noclick');
+        $("body " +show).addClass('click active'); 
+        $("body " +show_2).addClass('show active'); 
+
+        $("body " +hide).removeClass('click');
+        $("body " +hide).addClass('noclick'); 
+        $("body " +hide).removeClass('active'); 
+        $("body " +hide_2).removeClass('show active');
+        return true;
+    }
     // var table = $("#datatables_gestion_inscription").DataTable({
     //     lengthMenu: [
     //         [10, 15, 25, 50, 100, 20000000000000],
@@ -182,30 +194,42 @@ $(document).ready(function  () {
             }
         })
         $("#new_salarie").on("submit", async function(e) {
-            e.preventDefault();
-            const createCancelTokenHandler = createCancel();
-            notyf.open({
-                type:"info",
-                message: "En cours...",
-                duration: 90000,
-            });    
-            let formData = new FormData(this);
-            formData.append("diplomes",JSON.stringify(diplomes));
-            console.log(formData);
-            try {
-                const request = await axios.post(
-                    Routing.generate('app_salarie_salarie_new'),
-                    formData, 
-                    {cancelToken: createCancelTokenHandler.token}
-                    )
-                ;
-                const response = request.data;
-            } catch (error) {
-                console.log(error);
-                const message = error.response.data;
-                notyf.dismissAll();
-                notyf.error(message);
+
+            if(diplomes.length > 0){
+                e.preventDefault();
+                const createCancelTokenHandler = createCancel();
+                notyf.open({
+                    type:"info",
+                    message: "En cours...",
+                    duration: 90000,
+                });    
+                let formData = new FormData(this);
+                formData.append("diplomes",JSON.stringify(diplomes));
+                try {
+                    const request = await axios.post(
+                        Routing.generate('app_salarie_salarie_new'),
+                        formData, 
+                        {cancelToken: createCancelTokenHandler.token}
+                        )
+                    ;
+                    const response = request.data;
+
+                    //////////////hide / show 
+                    hide_show('#etatcivil','#etat_civil','#contract','#contrat');
+              
+                } catch (error) {
+                    console.log(error);
+                    const message = error.response.data;
+                    notyf.dismissAll();
+                    notyf.error(message);
+                }
             }
+            else{
+              
+                notyf.error("Merci de remplir les diplômes");
+                
+            }
+        
         });
 
 
@@ -226,23 +250,17 @@ $('.add_diplome').on('click', function(){
         var Niveau = $("#nv_diplome").find(":selected").text();
         var Diplome = $("#diplome").val();
         var Designation = $("#designation_diplome").val();
+        var Ecole = $("#Ecole_diplome").val();
     
             $('#body_diplome tr:last').after('<tr id="'+id_diplome +'"><td>'+Niveau+'</td><td id="'+Diplome +'">'
-             +Diplome+'</td><td  id"'+ Designation+'">'+Designation+'</td><td><button type="button" class="btn btndelete">x</button></td></tr>');
+             +Diplome+'</td><td  id"'+ Designation+'">'+Designation+'</td><td  id"'+ Ecole+'">'+Ecole+'</td><td><button type="button" class="btn btndelete">x</button></td></tr>');
 
-                diplomes.push({"nv_dip": Niveau,"Diplome":Diplome,"Designation":Designation,"id":id_diplome});
+                diplomes.push({"nv_dip": Niveau,"Diplome":Diplome,"Designation":Designation,"Ecole":Ecole,"id":id_diplome});
 
 });
     ////hide and show popup //////////////////////////////////////////////
 
-    // $("body #contract").removeClass('noclick');
-    // $("body #contract").addClass('click active'); 
-    // $("body #contrat").addClass('show active'); 
-
-    // $("body #etatcivil").removeClass('click');
-    // $("body #etatcivil").addClass('noclick'); 
-    // $("body #etatcivil").removeClass('active'); 
-    // $("body #etat_civil").removeClass('show active'); 
+     
 
 
 

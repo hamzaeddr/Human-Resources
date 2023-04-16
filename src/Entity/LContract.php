@@ -19,52 +19,52 @@ class LContract
     #[ORM\ManyToOne]
     private ?Pemploye $employe_id = null;
 
-    #[ORM\OneToMany(mappedBy: 'lContract', targetEntity: Tbulletin::class)]
+    #[ORM\OneToMany(mappedBy: 'lContract', targetEntity: Tbulletin::class )]
     private Collection $bulletin_id;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50,  nullable:true )]
     private ?string $code = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE,  nullable:true )]
     private ?\DateTimeInterface $date_debut = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE,  nullable:true )]
     private ?\DateTimeInterface $date_fin = null;
 
     #[ORM\Column]
     private ?int $active = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE,  nullable:true )]
     private ?\DateTimeInterface $date_sortie = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50,  nullable:true )]
     private ?string $motif_sortie = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE,  nullable:true )]
     private ?\DateTimeInterface $date_ancient = null;
 
-    #[ORM\ManyToOne(inversedBy: 'contract_id')]
+    #[ORM\ManyToOne(inversedBy: 'contract_id' )]
     private ?PnatureContract $pnatureContract = null;
 
-    #[ORM\OneToMany(mappedBy: 'contract_id', targetEntity: LcontractFonction::class)]
+    #[ORM\OneToMany(mappedBy: 'contract_id', targetEntity: LcontractFonction::class )]
     private Collection $lcontractFonctions;
 
-    #[ORM\OneToMany(mappedBy: 'contract_id', targetEntity: LdossierContract::class)]
+    #[ORM\OneToMany(mappedBy: 'contract_id', targetEntity: LdossierContract::class )]
     private Collection $ldossierContracts;
 
-    #[ORM\OneToMany(mappedBy: 'contract_id', targetEntity: LmatriculationCoti::class)]
+    #[ORM\OneToMany(mappedBy: 'contract_id', targetEntity: LmatriculationCoti::class )]
     private Collection $lmatriculationCotis;
 
-    #[ORM\OneToMany(mappedBy: 'contact_id', targetEntity: Lrib::class)]
+    #[ORM\OneToMany(mappedBy: 'contact_id', targetEntity: Lrib::class )]
     private Collection $lribs;
 
-    #[ORM\OneToMany(mappedBy: 'contract_id', targetEntity: LbaremeContract::class)]
+    #[ORM\OneToMany(mappedBy: 'contract_id', targetEntity: LbaremeContract::class )]
     private Collection $lbaremeContracts;
 
-    #[ORM\ManyToOne(inversedBy: 'contract_id')]
+    #[ORM\ManyToOne(inversedBy: 'contract_id' )]
     private ?LelementFixe $lelementFixe = null;
 
-    #[ORM\OneToMany(mappedBy: 'contract_id', targetEntity: Lmatriculationcoti::class)]
+    #[ORM\OneToMany(mappedBy: 'contract_id', targetEntity: Lmatriculationcoti::class )]
     private Collection $lmatriculationcotis;
 
     public function __construct()

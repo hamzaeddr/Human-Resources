@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: PemployeRepository::class)]
+#[ORM\Entity(repositoryClass: PemployeRepository::class )]
 class Pemploye
 {
     #[ORM\Id]
@@ -19,70 +19,70 @@ class Pemploye
     #[ORM\ManyToOne(inversedBy: 'code')]
     private ?PsituationFamiliale $situation_familiale_id = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, nullable:true )]
     private ?string $code = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50,  nullable:true )]
     private ?string $matricule = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50,  nullable:true )]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,  nullable:true )]
     private ?string $prenom = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_naissance = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50,  nullable:true )]
     private ?string $lieu_naissance = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50,  nullable:true )]
     private ?string $sexe = null;
 
-    #[ORM\Column]
+    #[ORM\Column (nullable:true)]
     private ?int $nombre_enfants = null;
 
-    #[ORM\Column]
+    #[ORM\Column (nullable:true)]
     private ?int $nbr_pris_en_charge = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50,  nullable:true )]
     private ?string $cin = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,  nullable:true )]
     private ?string $adresse1 = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,  nullable:true )]
     private ?string $adresse2 = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50,  nullable:true )]
     private ?string $code_postal = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50,  nullable:true )]
     private ?string $ville = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50,  nullable:true )]
     private ?string $pays = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50,  nullable:true )]
     private ?string $nationalite = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,  nullable:true )]
     private ?int $tel1 = null;
 
     #[ORM\Column]
     private ?int $tel2 = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,  nullable:true )]
     private ?string $email = null;
 
-    #[ORM\Column]
+    #[ORM\Column (nullable:true)]
     private ?int $active = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE,  nullable:true )]
     private ?\DateTimeInterface $created = null;
 
-    #[ORM\OneToMany(mappedBy: 'Id_employe', targetEntity: Diplome::class)]
+    #[ORM\OneToMany(mappedBy: 'Id_employe', targetEntity: Diplome::class )]
     private Collection $diplomes;
 
     public function __construct()

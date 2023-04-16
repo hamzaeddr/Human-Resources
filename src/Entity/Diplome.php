@@ -25,6 +25,12 @@ class Diplome
     #[ORM\Column]
     private ?int $Desactiver = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Ecole = null;
+
+    #[ORM\Column(length: 255 , nullable: true)]
+    private ?string $Description = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +80,30 @@ class Diplome
     public function setDesactiver(int $Desactiver): self
     {
         $this->Desactiver = $Desactiver;
+
+        return $this;
+    }
+
+    public function getEcole(): ?string
+    {
+        return $this->Ecole;
+    }
+
+    public function setEcole(?string $Ecole): self
+    {
+        $this->Ecole = $Ecole;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->Description;
+    }
+
+    public function setDescription(string $Description): self
+    {
+        $this->Description = $Description;
 
         return $this;
     }
