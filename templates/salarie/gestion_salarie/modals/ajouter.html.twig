@@ -64,21 +64,39 @@
                     <div class="tab-content">
                             {# <form> #}
                                 <div class="tab-pane fade show active" id="etat_civil">
-                        <form  id="new_salarie">
+                                      <form  id="new_salarie">
 
-                                    {% include 'salarie/gestion_salarie/pages/etat_civil.html.twig' %}     
-                        </form>
+                                             {% include 'salarie/gestion_salarie/pages/etat_civil.html.twig' %}     
+                                      </form>
 
                                 </div>
 
                                 <div class="tab-pane fade" id="contrat">
-                                    {% include 'salarie/gestion_salarie/pages/contrat.html.twig' %}                            
+                                    <form  id="new_contract">
+
+                                    {% include 'salarie/gestion_salarie/pages/contrat.html.twig' %}     
+
+
+                                    </form>                       
                                 </div>
+
                                 <div class="tab-pane fade" id="cnss_rib">
-                                    {% include 'salarie/gestion_salarie/pages/cnss_rib.html.twig' %}                            
+                                    <form  id="new_cnss">
+                                   
+                                        {% include 'salarie/gestion_salarie/pages/cnss_rib.html.twig' %}
+
+                                    </form>                                
                                 </div>
+
+
                                 <div class="tab-pane fade" id="plus_info">
-                                    {% include 'salarie/gestion_salarie/pages/plus_info.html.twig' %}                            
+
+                                    <form  id="new_plus">
+
+                                    {% include 'salarie/gestion_salarie/pages/plus_info.html.twig' %}    
+
+                                    </form>
+
                                 </div>
                             {# </form> #}
                     </div>
@@ -86,7 +104,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-secondary" form="new_salarie">Enregistre</button>
+                <button type="submit" class="btn btn-secondary">Enregistre</button>
                 <button type="button" class="btn btn-link text-gray-600 me-auto" data-bs-dismiss="modal">Fermer</button>
             </div>
         </div>

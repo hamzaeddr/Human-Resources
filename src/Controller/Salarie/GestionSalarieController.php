@@ -2,6 +2,8 @@
 
 namespace App\Controller\Salarie;
 
+use App\Entity\Diplome;
+use App\Entity\Pemploye;
 use App\Entity\Pfonction;
 use App\Controller\ApiController;
 use App\Entity\PNaturesalarieCab;
@@ -10,6 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -43,6 +46,13 @@ class GestionSalarieController extends AbstractController
     #[Route('/new', name: 'app_salarie_salarie_new', options:['expose' => true])]
     public function new(Request $request): Response
     {
-        dd(json_decode($request->get('diplomes')));
+        $employe = $this->em->getRepository(Pemploye::class)->New_employe($request);
+        $employe_id = $employe->getId();
+        $Diplomes = json_decode($request->get('diplomes'));
+        $diplome = $this->em->getRepository(Diplome::class)->add_diplome(
+            $Diplomes,$employe_id
+        );
+        return new JsonResponse('ok');        
+
     }
 }

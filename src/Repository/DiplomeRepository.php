@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Diplome;
+use App\Entity\Pemploye;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -54,13 +55,29 @@ class DiplomeRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Diplome
-//    {
-//        return $this->createQueryBuilder('d')
-//            ->andWhere('d.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+   public function add_diplome($data,$id)
+   {
+      
+
+    foreach($data as $list){
+
+        $diplome = new Diplome();
+        $diplome->setNiveau($list->nv_dip);
+        $diplome->setDiplome($list->Diplome);
+        $diplome->setDesactiver(0);
+        $diplome->setEcole($list->Ecole);
+        $diplome->setDescription($list->Designation);
+        $diplome->setIdEmploye(
+             $this->getEntityManager()->getRepository(Pemploye::class)->find($id)
+        );
+        
+        $this->getEntityManager()->persist($diplome);
+
+    }
+
+    $this->getEntityManager()->flush();
+
+    return $diplome;
+
+   }
 }

@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Pemploye;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\PsituationFamiliale;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Pemploye>
@@ -16,6 +17,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class PemployeRepository extends ServiceEntityRepository
 {
+    
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Pemploye::class);
@@ -54,13 +56,39 @@ class PemployeRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Pemploye
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+   public function New_employe($data)
+   {
+
+    $employe = new Pemploye();
+
+    $employe->setNom($data->get('nom'));
+    $employe->setPrenom($data->get('prenom'));
+    $date = new \DateTime();
+    $employe->setDateNaissance($date->setTimestamp(strtotime($data->get('date_naissance'))));
+    $employe->setLieuNaissance($data->get('lieu_naissance'));
+    $employe->setCin($data->get('cin'));
+    $employe->setSexe($data->get('sexe'));
+    $employe->setSituationFamilialeId(
+        $this->getEntityManager()->getRepository(PsituationFamiliale::class)->find($data->get('situation_familiale'))
+    );
+    $employe->setAdresse1($data->get('adresse_1'));
+    $employe->setAdresse2($data->get('adresse_2'));
+    $employe->setNationalite($data->get('nationalite'));
+    $employe->setSexe($data->get('sexe'));
+    $employe->setCodePostal($data->get('code_postal'));
+    $employe->setVille($data->get('ville'));
+    $employe->setPays($data->get('pays'));
+    $employe->setTel1($data->get('telephone_1'));
+    $employe->setTel2($data->get('telephone_2'));
+    $employe->setEmail($data->get('email'));
+  
+    $this->getEntityManager()->persist($employe);
+
+        $this->getEntityManager()->flush();
+
+return $employe;
+
+
+      
+   }
 }
