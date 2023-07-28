@@ -37,6 +37,7 @@ class RegistrationController extends AbstractController
         ));
         $user->isEnable(false);
         $entityManager->persist($user);
+        dd($user);
         $entityManager->flush();
 
         return new JsonResponse("Veuillez contacter l'administrateur pour active votre compte!");

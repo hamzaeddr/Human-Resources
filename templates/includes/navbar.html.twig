@@ -1,9 +1,50 @@
+<style>
+  .navbar {
+    position: relative;
+  }
+
+  .white-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 140%; /* Adjust the width here (e.g., 120% or any other value you like) */
+    height: 100%;
+    background-color: white;
+    z-index: -1; /* Set the z-index to -1 to place it behind the navbar content */
+  }
+
+  .bg-white {
+    background-color: white;
+    padding: 20px; /* Add padding to the div if needed */
+  }
+
+  .navbar-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #333;
+    margin: 0;
+    padding: 10px;
+  }
+  .navbar-logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+</style>
+
 <nav class="navbar navbar-top navbar-expand navbar-dashboard navbar-dark ps-0 pe-2 pb-0">
+ <div class="white-bg"></div>
   <div class="container-fluid px-0">
     <div class="d-flex justify-content-between w-100" id="navbarSupportedContent">
-      <div class="d-flex align-items-center">
+      <div class="d-flex align-items-center navbar-title">
+      {# <H2 class="mb-3">Salarie</H2> #}
+            <div class="navbar-logo">Salarie</div>
+
         <!-- Search form -->
-          <input type="hidden" id="dossierId" value="{{app.session.get('dossiers')[0].id}}" />
+          {# <input type="hidden" id="dossierId" value="{{app.session.get('dossiers')[0].id}}" />
           <select class="select dossierSelect">
             <option value="" selected disabled>Choix dossier</option>
             {% for dossier in app.session.get('dossiers') %}
@@ -13,7 +54,7 @@
               <option value="{{dossier.id}}">{{dossier.abreviation}} - {{dossier.designation}}</option>
               {% endif %}
             {% endfor %}
-          </select>
+          </select> #}
         <!-- / Search form -->
       </div>
       <!-- Navbar links -->
@@ -55,4 +96,6 @@
       </ul>
     </div>
   </div>
+  {# </div> #}
 </nav>
+</br>

@@ -84,9 +84,10 @@ class Diplome
         return $this;
     }
 
-    public function getEcole(): ?string
+    public function getEcole(): ?string 
     {
         return $this->Ecole;
+        
     }
 
     public function setEcole(?string $Ecole): self
