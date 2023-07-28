@@ -11,9 +11,35 @@
 }
 .click{
 }
+.row{
+        position: relative;
+
+}
+
+
 </style>
-    {% include 'includes/actions.html.twig' %}
     <div class="row ">
+       <div class="white-bg"></div>
+            <div class="container-fluid px-0">
+    <div class="d-flex justify-content-between w-100" id="navbarSupportedContent">
+      <div class="d-flex align-items-center w-50">
+        <!-- Search form -->
+          <input type="hidden" id="dossierId" value="{{app.session.get('dossiers')[0].id}}" />
+          <select class="select dossierSelect">
+            <option value="" selected disabled>Choix dossier</option>
+            {% for dossier in app.session.get('dossiers') %}
+              {% if dossier.id == app.session.get('dossiers')[0].id %} 
+              <option selected value="{{dossier.id}}">{{dossier.abreviation}} - {{dossier.designation}}</option>
+              {% else %}
+              <option value="{{dossier.id}}">{{dossier.abreviation}} - {{dossier.designation}}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        <!-- / Search form -->
+      </div>
+
+    {% include 'includes/actions.html.twig' %}
+    </div>
         <div class="col-12 mb-4">
             <div class="card  border-0 shadow">
                 

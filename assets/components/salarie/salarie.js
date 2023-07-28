@@ -42,6 +42,10 @@ $(document).ready(function  () {
             language: {
                 url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json",
             },
+            lengthMenu: [
+                        [20, 40, 60, 80, 100, 20000000000000],
+                        [20, 40, 60, 80, 100, "All"],
+                    ],
         });
 
         let natureCab = null;
@@ -216,6 +220,7 @@ $(document).ready(function  () {
 
                     //////////////hide / show 
                     hide_show('#etatcivil','#etat_civil','#contract','#contrat');
+                    notyf.dismissAll();
               
                 } catch (error) {
                     console.log(error);
