@@ -1,0 +1,98 @@
+
+<div class="modal right come-from-modal fade"  id="upload_modal" aria-labelledby="modal-default" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-top" style="width:60%;max-width:1000px !important"  role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Import des honoraires</h2>
+                <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+            </div>
+            <div class="modal-body">
+                <form id="add_honoraire">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="text-size-12">Dossier:</label>
+                            <select required class="form-control select dossier_select" name="dossier">
+                                <option value="">Choix dossier</option>
+                                {% for dossier in dossiers %}
+                                    <option value="{{dossier.id}}">{{dossier.abreviation}} - {{dossier.designation}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-8">
+                            <label class="text-size-12">Observation:</label>
+                            <input type="text" class="form-control" name="observation" />
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        
+                        <div class="col-md-3">
+                            <label required class="text-size-12">Elément:</label>
+                            <select class="text-uppercase form-control select" name="element">
+                                <option value="">Choix element</option>
+                                {% for elementHonoraire in elementHonoraires %}
+                                    <option value="{{elementHonoraire.id}}">{{elementHonoraire.designation|upper}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label required class="text-size-12">Nature:</label>
+                            <select class="text-uppercase form-control select nature_select" name="nature">
+                                <option value="">Choix nature</option>
+                                    <option value="médecin" >{{"médecin"|upper}}</option>
+                                    <option value="enseignant" >{{"enseignant"|upper}}</option>
+                                    <option value="autres" >{{"autres"|upper}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label required class="text-size-12">Paiement:</label>
+                            <select class="text-uppercase form-control select paiement_select" name="paiement">
+                                <option value="">Choix paiement</option>
+                                {% for paiement in paiements %}
+
+                                    <option value="{{paiement.id}}" >{{paiement.designation|upper}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label required class="text-size-12">Devise:</label>
+                            <select class=" text-uppercase form-control select" name="devise">
+                                <option value="">Choix devise</option>
+                                {% for devise in devises %}
+                                    <option  value="{{devise.id}}"{% if devise.designation == 'mad'%} selected {% endif %}>{{devise.designation|upper}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <hr>
+                <div class="mb-4">
+                    <button class="btn btn-primary"><i class="fa fa-download"></i></button>
+                    <input type="file" id="upload_file_honoraire" style="display:none"/>
+                    <button class="btn btn-success upload_file_honoraire_button"><i class="fa fa-upload text-white"></i></button>
+                
+                </div>
+                <table class=" table table-bordered  table-striped" id="list_bhonoraires" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Béneficiaire</th>
+                            <th>Montant</th>
+                            <th>Montant MAD</th>
+                            <th>Brut MAD</th>
+                            <th>IR</th>
+                            <th>IR MAD</th>
+                            <th>RIB</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="honoraire_list_data">
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer justify-content-start" >
+                <button type="submit" class="btn btn-secondary" form="add_honoraire">Enregistre</button>
+                <a type="button" class="btn btn-link" data-bs-dismiss="modal">Fermer</a>
+            </div>
+        </div>
+    </div>
+</div>

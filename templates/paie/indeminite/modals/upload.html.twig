@@ -1,0 +1,105 @@
+
+<div class="modal right come-from-modal fade"  id="upload_modal" aria-labelledby="modal-default" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-top" style="width:50%;max-width:1000px !important"  role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Import des indeminites</h2>
+                <a type="button" class="btn-close" data-bs-dismiss="modal" data-dismiss="modal" aria-label="Close"></a>
+            </div>
+            <div class="modal-body">
+                <form id="add_indeminite">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label class="text-size-12">Observation:</label>
+                            <input type="text" class="form-control" name="observation" />
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Elément:</label>
+                            <select class="text-uppercase form-control select" required name="element">
+                                <option value="">Choix element</option>
+                                {% for element in elements %}
+                                    <option value="{{element.id}}">{{element.designation|upper}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Paiement:</label>
+                            <select class="text-uppercase form-control select paiement_select" required name="paiement">
+                                <option value="">Choix paiement</option>
+                                {% for paiement in paiements %}
+
+                                    <option value="{{paiement.id}}" >{{paiement.designation|upper}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Devise:</label>
+                            <select class=" text-uppercase form-control select" required name="devise">
+                                <option value="">Choix devise</option>
+                                {% for devise in devises %}
+                                    <option  value="{{devise.id}}"{% if devise.designation == 'mad'%} selected {% endif %}>{{devise.designation|upper}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <hr>
+                <div class="row mb-4 align-items-end justify-content-center">
+                    <div class="col-md-10">
+                        <div class="row align-items-end">
+                            <div class="col-md-4">
+                                <label required class="text-size-12">Employe:</label>
+                                <select class=" text-uppercase form-control employe_select select" name="devise">
+                                    <option value="">Choix employe</option>
+                                    {% for contract in contracts %}
+                                        <option data-rib="{{contract.rib}}" data-name="{{contract.nom|capitalize}} {{contract.prenom|capitalize}}"  value="{{contract.id}}">{{contract.nom|capitalize}} {{contract.prenom|capitalize}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-size-12">Montant:</label>
+                                <input type="number"  class="form-control montant" name="montant" />
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-size-12">Montant Mad:</label>
+                                <input type="number"  class="form-control montant_mad" name="montant_mad" />
+                            </div>
+                            <div class="col-md-1">
+                                <button class="btn btn-success add_employe"><i class="fa fa-plus text-white"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-end">
+                        <button class="btn btn-primary"><i class="fa fa-download"></i></button>
+                        <input type="file" id="upload_file_indeminite" style="display:none"/>
+                        <button class="btn btn-success upload_file_button"><i class="fa fa-upload text-white"></i></button>
+                    
+                    </div>
+                </div>
+                
+              
+                <table class=" table table-bordered  table-striped" id="list_indeminites" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Employe</th>
+                            <th>Montant</th>
+                            <th>Montant MAD</th>
+                            <th width="20%">RIB</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="list_indeminites_data">
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer justify-content-start" >
+                <button type="submit" class="btn btn-secondary" form="add_indeminite">Enregistre</button>
+                <a type="button" class="btn btn-link" data-bs-dismiss="modal"  data-dismiss="modal">Fermer</a>
+            </div>
+        </div>
+    </div>
+</div>

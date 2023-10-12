@@ -1,0 +1,107 @@
+
+<div class="modal right come-from-modal fade"  id="ajouter_modal" aria-labelledby="modal-default" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-top" style="width:50%;max-width:1000px !important"  role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Ajouter élement fixe</h2>
+                <a type="button" class="btn-close" data-bs-dismiss="modal" data-dismiss="modal" aria-label="Close"></a>
+            </div>
+            <div class="modal-body overflow-auto">
+                <form id="add_fixe">
+                    <div class="row mt-2">
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Employe:</label>
+                            <select class=" text-uppercase form-control employe_select select" name="contract">
+                                <option value="">Choix employe</option>
+                                {% for contract in contracts %}
+                                    <option data-json='{"nom": "{{contract.employe.nom}}", "prenom": "{{contract.employe.prenom}}","contract_id": "{{contract.id}}", "bareme_id": "{{contract.bareme.id}}", "matricule": "{{contract.employe.code}}", "nature": "{{contract.bareme.designation}}", "bareme": "{{contract.bareme.bareme}}", "cin": "{{contract.employe.cin}}", "date_anciennete": "{{contract.dateAnciennete|date('d/m/Y')}}", "contract": "{{contract.code}}"}' data-name="{{contract.employe.nom|capitalize}} {{contract.employe.prenom|capitalize}}"  value="{{contract.id}}">{{contract.employe.nom|capitalize}} {{contract.employe.prenom|capitalize}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Matricule:</label>
+                            <input type="text" class="form-control" id="matricule" name="matricule" readonly/>
+                        </div>
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Contrat:</label>
+                            <input type="text" class="form-control" id="contract" name="contract" readonly/>
+                        </div>
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Nature:</label>
+                            <input type="text" class="form-control" id="nature" name="nature"readonly />
+                        </div>
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Cin:</label>
+                            <input type="text" class="form-control" id="cin" name="cin" readonly/>
+                        </div>
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Entrée le:</label>
+                            <input type="text" class="form-control" id="entrele" name="entrele" readonly/>
+                        </div>
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Profile:</label>
+                            <input type="text" class="form-control" id="profile" name="profile" readonly/>
+                        </div>
+                        
+                    </div>
+                    <hr>
+                    <div class="row mt-2 align-items-end ">
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Elément:</label>
+                            <select class="text-uppercase form-control select element_select" name="element">
+                                <option value="">Choix element</option>
+                                {% for element in elements %}
+                                    <option data-json='{"absence": "{{element.absence}}", "sens": "{{element.sens}}", "designation": "{{element.designation}}", "id": "{{element.id}}"}' value="{{element.id}}">{{element.designation|upper}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                       
+                       <div class="col-md-2 input_base" style="display:none">
+                            <label required class="text-size-12">Nombre jours:</label>
+                            <input type="number" class="form-control" id="nombrejours" name="nombrejours" />
+                        </div>
+                        <div class="col-md-2 input_base" style="display:none">
+                            <label required class="text-size-12">Base:</label>
+                            <input type="number" class="form-control" id="base" name="base" readonly/>
+
+                        </div>
+                        
+                        <div class="col-md-1">
+                            <label required class="text-size-12">Sens:</label>
+                            <input type="text" name="sens" class="form-control" id="sens" readonly />
+                        </div>
+                         <div class="col-md-2 input_montant">
+                            <label required class="text-size-12">Montant:</label>
+                            <input type="number" class="form-control" id="montant" name="montant" />
+                        </div>
+                        <div class="col-md-1">
+                            <button class="btn btn-success add_employe"><i class="fa fa-plus text-white"></i></button>
+                        </div>
+
+                      
+                    </div>
+                   
+                </form>
+                <hr>               
+                <table class=" table table-bordered  table-striped" id="list_prets" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>Employe</th>
+                            <th>Matricule</th>
+                            <th>Contract</th>
+                            <th>Element</th>
+                            <th>Montant</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="list_prets_data">
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer justify-content-start" >
+                <button type="submit" class="btn btn-secondary" form="add_echeance">Enregistre</button>
+                <a type="button" class="btn btn-link" data-bs-dismiss="modal"  data-dismiss="modal">Fermer</a>
+            </div>
+        </div>
+    </div>
+</div>

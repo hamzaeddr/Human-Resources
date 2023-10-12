@@ -1,0 +1,89 @@
+
+<div class="modal right come-from-modal fade"  id="ajouter_modal" aria-labelledby="modal-default" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-top" style="width:50%;max-width:1000px !important"  role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Ajouter prêt</h2>
+                <a type="button" class="btn-close" data-bs-dismiss="modal" data-dismiss="modal" aria-label="Close"></a>
+            </div>
+            <div class="modal-body overflow-auto">
+                <form id="add_pret">
+                    <div class="row mt-2">
+                        
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Elément:</label>
+                            <select class="text-uppercase form-control select" required name="element">
+                                <option value="">Choix element</option>
+                                {% for element in elements %}
+                                    <option value="{{element.id}}">{{element.designation|upper}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Employe:</label>
+                            <select class=" text-uppercase form-control employe_select select" name="contract">
+                                <option value="">Choix employe</option>
+                                {% for contract in contracts %}
+                                    <option data-rib="{{contract.rib}}" data-name="{{contract.nom|capitalize}} {{contract.prenom|capitalize}}"  value="{{contract.id}}">{{contract.nom|capitalize}} {{contract.prenom|capitalize}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Motif:</label>
+                            <input type="text" class="form-control" id="motif" name="motif" />
+                        </div>
+                        
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Début prêt:</label>
+                            <input type="month" name="periode" class="periode form-control" id="periode" value="{{'now'|date('Y-m')}}" min="{{"now"|date('Y-m')}}"/>
+                        </div>
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Montant prêt:</label>
+                            <input type="number" class="form-control" id="montantpret" name="montantpret" />
+                           
+                        </div>
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Montant echeance:</label>
+                            <input type="number" class="form-control" id="montantecheance" name="montantecheance" />
+
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="row mt-2">
+                        
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Nombre de mois:</label>
+                            <input type="number" class="form-control" id="nombremois" readonly/>
+                        </div>
+                        {# <div class="col-md-4">
+                            <label required class="text-size-12">Dernier echeance:</label>
+                            <input type="number" class="form-control" id="dernierecheance" readonly/>
+                   
+                        </div>
+                         #}
+                        
+                    </div>
+                </form>
+                <hr>               
+                <table class=" table table-bordered  table-striped" id="list_prets" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Periode</th>
+                            <th>Montant</th>
+                        </tr>
+                    </thead>
+                    <tbody class="list_prets_data">
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer justify-content-start" >
+                <button type="submit" class="btn btn-secondary" form="add_pret">Enregistre</button>
+                <a type="button" class="btn btn-link" data-bs-dismiss="modal"  data-dismiss="modal">Fermer</a>
+            </div>
+        </div>
+    </div>
+</div>

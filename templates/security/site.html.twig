@@ -1,0 +1,73 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head> 
+<title>FCZ - Login</title>
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+
+ 
+   
+{% endblock %}
+
+<!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
+
+</head>
+
+<body>
+
+    <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
+    
+
+    <main>
+
+        <!-- Section -->
+        <section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
+            <div class="container">
+                
+                <div class="row justify-content-center form-bg-image" >
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                           
+                            <div class="text-center text-md-center mb-4 mt-md-0">
+                                <h1 class="mb-0 h3">CHANGER SITE :</h1>
+                            </div>
+                            <form method="post" class="mt-4">
+                                <!-- Form -->
+                                <div class="form-group mb-4">
+                                    <label for="email">Choix Site : </label>
+                                    <div class="input-group">
+                                       
+                                        <select class="select nature_contrat nature_contrat" name="nature_contrat" id="site"   required >
+                                            <option value="" selected>Selectionnez Site :</option>
+                                            {% for dossier in dossiers %}
+                                                <option value="{{dossier.id}}">{{dossier.abreviation}} - {{dossier.designation}}</option>
+                                            {% endfor %}
+                                        </select> 
+                                    </div>  
+                                </div>
+                                <!-- End of Form -->
+                           
+                                <div class="d-grid">
+                                    <button type="button" id="sitechoisir" class="btn btn-gray-800">Choisir</button>
+                                </div>
+                                
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+</body>
+
+</html>

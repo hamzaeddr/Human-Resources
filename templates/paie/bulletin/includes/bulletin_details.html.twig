@@ -1,0 +1,59 @@
+<div>
+    <div class="row">
+        <div class="col-md-4">
+            <p><b>Matricule:</b> {{bulletin.contract.employe.matricule}}</p>
+        </div>
+        <div class="col-md-4">
+            <p><b>Nom:</b> {{bulletin.contract.employe.nom}}</p>
+        </div>
+        <div class="col-md-4">
+            <p><b>Prenom:</b> {{bulletin.contract.employe.prenom}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <p><b>Nature contract:</b> {{bulletin.contract.pnatureContract.designation}}</p>
+        </div>
+        <div class="col-md-4">
+            <p><b>Bareme:</b> {{bulletin.contract.bareme.bareme}}</p>
+        </div>
+        
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-4">
+            <p><b>Bulletin:</b> {{bulletin.code}}</p>
+        </div>
+        <div class="col-md-4">
+            <p><b>Periode:</b> {{bulletin.periode.code}}</p>
+        </div>
+        <div class="col-md-4">
+            <p><b>Imprimer:</b> <i class="fa fa-download text-primary bulletin_download" type="button" id="{{bulletin.id}}"></i></p>
+        </div>
+        
+    </div>
+    <hr>
+    <table class="table table-bordered  table-striped" id="list_bulletin_details">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Rubrique</th>
+                <th>Motant</th>
+                <th>Sens</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bulletinLg in bulletinLgs %}
+                <tr id="{{bulletinLg.id}}">
+                    <td>{{loop.index}}</td>
+                    <td>{{bulletinLg.rubrique.designation}}</td>
+                    {# <td style="text-align: right !important">{{bulletinLg.montant|number_format(2, ',', ' ')}}</td> #}
+                    <td style="text-align: right !important">{{bulletinLg.montant}}</td>
+                    <td>{{bulletinLg.sens}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+
+</div>

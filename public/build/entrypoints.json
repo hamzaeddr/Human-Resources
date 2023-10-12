@@ -1,0 +1,105 @@
+{
+  "entrypoints": {
+    "app": {
+      "js": [
+        "/build/runtime.725dd7e0.js",
+        "/build/31.6d15053c.js",
+        "/build/589.3f5f9f76.js",
+        "/build/267.64ba618b.js",
+        "/build/app.8f028c44.js"
+      ],
+      "css": [
+        "/build/267.c6c54de3.css",
+        "/build/app.9f1759c9.css"
+      ]
+    },
+    "security_register": {
+      "js": [
+        "/build/runtime.725dd7e0.js",
+        "/build/31.6d15053c.js",
+        "/build/589.3f5f9f76.js",
+        "/build/security_register.c231893b.js"
+      ]
+    },
+    "salarie_salarie": {
+      "js": [
+        "/build/runtime.725dd7e0.js",
+        "/build/31.6d15053c.js",
+        "/build/589.3f5f9f76.js",
+        "/build/salarie_salarie.f95b6c17.js"
+      ]
+    },
+    "paie_bulletin": {
+      "js": [
+        "/build/runtime.725dd7e0.js",
+        "/build/31.6d15053c.js",
+        "/build/589.3f5f9f76.js",
+        "/build/paie_bulletin.09753821.js"
+      ]
+    },
+    "paie_honoraire": {
+      "js": [
+        "/build/runtime.725dd7e0.js",
+        "/build/31.6d15053c.js",
+        "/build/589.3f5f9f76.js",
+        "/build/paie_honoraire.23eadca6.js"
+      ]
+    },
+    "paie_indeminite": {
+      "js": [
+        "/build/runtime.725dd7e0.js",
+        "/build/31.6d15053c.js",
+        "/build/589.3f5f9f76.js",
+        "/build/paie_indeminite.7ff8afdd.js"
+      ]
+    },
+    "mouvement_prets": {
+      "js": [
+        "/build/runtime.725dd7e0.js",
+        "/build/31.6d15053c.js",
+        "/build/589.3f5f9f76.js",
+        "/build/mouvement_prets.a4f8eccd.js"
+      ]
+    },
+    "mouvement_echeance": {
+      "js": [
+        "/build/runtime.725dd7e0.js",
+        "/build/31.6d15053c.js",
+        "/build/589.3f5f9f76.js",
+        "/build/614.1ece4367.js",
+        "/build/mouvement_echeance.a4987acb.js"
+      ]
+    },
+    "mouvement_fixe": {
+      "js": [
+        "/build/runtime.725dd7e0.js",
+        "/build/31.6d15053c.js",
+        "/build/589.3f5f9f76.js",
+        "/build/mouvement_fixe.727a2ecb.js"
+      ]
+    },
+    "mouvement_arret": {
+      "js": [
+        "/build/runtime.725dd7e0.js",
+        "/build/31.6d15053c.js",
+        "/build/mouvement_arret.f3485153.js"
+      ]
+    },
+    "tresorerie_bordereau": {
+      "js": [
+        "/build/runtime.725dd7e0.js",
+        "/build/31.6d15053c.js",
+        "/build/589.3f5f9f76.js",
+        "/build/tresorerie_bordereau.8fab2699.js"
+      ]
+    },
+    "parametre_user": {
+      "js": [
+        "/build/runtime.725dd7e0.js",
+        "/build/31.6d15053c.js",
+        "/build/589.3f5f9f76.js",
+        "/build/parametre_user.1b97fe98.js"
+      ]
+    }
+  }
+}

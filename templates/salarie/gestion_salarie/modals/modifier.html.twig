@@ -1,0 +1,85 @@
+<style>
+        
+
+
+ .btnclose{
+    background-color: #f7f4f4;
+ }
+
+</style>
+
+<div class="modal right come-from-modal fade" id="modal_modifier" aria-labelledby="modal-default" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-top" style="max-width:900px !important" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Modifier salarie</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-header">
+                        <ul class="nav nav-pills">                
+                            <li class="nav-item mr-2">
+                                <a href="#etat_civil" id="etatcivil_update" class="nav-link noclick">Etat Civil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#contrat" id="contract_update" class="nav-link active" >Contrat</a>
+                            </li>                
+                            <li class="nav-item">
+                                <a href="#cnss_rib" id="cnss_rib_update" class="nav-link noclick">Cnss Rib</a>
+                            </li>                
+                            <li class="nav-item">
+                                <a href="#plus_info" id="plus_info_update" class="nav-link noclick">Plus Info</a>
+                            </li>                
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                    <div class="tab-content">
+                            {# <form> #}
+                                <div class="tab-pane fade" id="etat_civil_update">
+                                      <form  id="new_salarie">
+
+                                             {% include 'salarie/gestion_salarie/pages/etat_civil.html.twig' %}     
+                                      </form>
+
+                                </div>
+
+                                <div class="tab-pane fade show active" id="contrat_update">
+                                    <form  id="new_contract">
+
+                                     {% include 'salarie/gestion_salarie/pages/contrat.html.twig' %}     
+
+
+                                    </form>                       
+                                </div>
+
+                                <div class="tab-pane fade" id="cnss_rib_update">
+                                    <form  id="new_cnss">
+                                   
+                                        {% include 'salarie/gestion_salarie/pages/cnss_rib.html.twig' %}
+
+                                    </form>                                
+                                </div>
+
+
+                                <div class="tab-pane fade" id="plus_info_update">
+
+                                    <form  id="new_plus">
+
+                                    {% include 'salarie/gestion_salarie/pages/plus_info.html.twig' %}    
+
+                                    </form>
+
+                                </div>
+                            {# </form> #}
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary">Enregistre</button>
+                <button type="button" class="btn btn-link text-gray-600 me-auto btnclose" st data-bs-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>

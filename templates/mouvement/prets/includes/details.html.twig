@@ -1,0 +1,63 @@
+<div>
+    <div class="row">
+        <div class="col-md-4">
+            <p><b>Matricule:</b> {{prelevement.contract.employe.matricule}}</p>
+        </div>
+        <div class="col-md-4">
+            <p><b>Nom:</b> {{prelevement.contract.employe.nom}}</p>
+        </div>
+        <div class="col-md-4">
+            <p><b>Prenom:</b> {{prelevement.contract.employe.prenom}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <p><b>Nature contract:</b> {{prelevement.contract.pnatureContract.designation}}</p>
+        </div>
+        <div class="col-md-4">
+            <p><b>Bareme:</b> {{prelevement.contract.bareme.bareme}}</p>
+        </div>
+        
+    </div>
+    <hr>
+    <table class="table table-bordered  table-striped" id="list_prelevement_details">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Prelevement</th>
+                <th>Periode</th>
+                <th>Motant</th>
+                <th>Motif</th>
+                <th>Statut</th>
+                <th>Bulletin</th>
+            </tr>
+        </thead>
+        <tbody id="list_details">
+            {% for prelevementDet in prelevement.prelevementLgs %}
+                <tr id="{{prelevementDet.id}}">
+                    <td>{{loop.index}}</td>
+                    <td>{{prelevementDet.prelevement.code}}</td>
+                    <td>{{prelevementDet.periode.code}}</td>
+                    <td>{{prelevementDet.montant|number_format(2, ',', ' ')}}</td>
+                    <td>{{prelevementDet.motif}}</td>
+                    <td class="text-center">
+                        {% if prelevementDet.valider == true %}
+                            <i class="fa-solid fa-circle-check text-success"></i>
+                        {% elseif prelevementDet.active == false %}
+                            <i class="fa-solid fa-circle-xmark text-danger"></i>
+                        {% else %}
+                            <i class="fa-solid fa-circle-notch text-info"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if prelevementDet.valider == true and prelevementDet.bulletin %}
+                           <span role="button" class="bulletin_download" id="{{prelevementDet.bulletin.id}}">{{prelevementDet.bulletin.code}}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+
+</div>

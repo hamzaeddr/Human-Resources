@@ -1,0 +1,79 @@
+
+<div class="modal right come-from-modal fade"  id="ajouter_modal" aria-labelledby="modal-default" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-top" style="width:50%;max-width:1000px !important"  role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Ajouter Arrêt</h2>
+                <a type="button" class="btn-close" data-bs-dismiss="modal" data-dismiss="modal" aria-label="Close"></a>
+            </div>
+            <div class="modal-body overflow-auto">
+                <form id="add_pret">
+                    <div class="row mt-2">
+                        
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Motif:</label>
+                            <select class="text-uppercase form-control select motif_id" required name="motif_id">
+                                    <option value="">Choix Motif</option>
+                                    {% for motif in motifs %}
+                                            <option value="{{motif.id}}">{{motif.designation|upper}}</option>
+                                    {% endfor %}
+                                    
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Employe:</label>
+                            <select class=" text-uppercase form-control employe_select select employe_arret" name="employe_arret">
+                                <option value="">Choix employe</option>
+                                    <option data-employe=""   value=""></option>
+                                      {% for emp in pemployes %}
+                                            <option data-employe="{{emp.id}}"  value="{{emp.id}}">{{emp.nom|upper}} {{emp.prenom|upper}}</option>
+                                    {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label required class="text-size-12">ID Employe:</label>
+                            <input type="text" class="form-control" id="id_emp_arret" name="id_emp_arret" disabled/>
+                        </div>
+                        
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Date de l'arrêt *:</label>
+                            <input type="date" name="periode" class="periode form-control datedebut" id="datedebut" value="" min=""/>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Fin Prévisionelle *:</label>
+                            <input type="date" name="periode" class="periode form-control datefin" id="datefin" value="" min=""/>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label required class="text-size-12">Reprise de travail *:</label>
+                            <input type="date" name="periode" class="periode form-control datereprise" id="datereprise" value="" min=""/>
+                        </div>
+                        
+                        
+                        
+                    </div>
+                    <div class="row mt-2">
+                        
+                      
+                        {# <div class="col-md-4">
+                            <label required class="text-size-12">Dernier echeance:</label>
+                            <input type="number" class="form-control" id="dernierecheance" readonly/>
+                   
+                        </div>
+                         #}
+                        
+                    </div>
+                </form>
+                <hr>               
+               
+            </div>
+            <div class="modal-footer justify-content-start" >
+                <button type="submit" class="btn btn-secondary add_arret" form="add_arret">Enregistre</button>
+                <a type="button" class="btn btn-link" data-bs-dismiss="modal"  data-dismiss="modal">Fermer</a>
+            </div>
+        </div>
+    </div>
+</div>

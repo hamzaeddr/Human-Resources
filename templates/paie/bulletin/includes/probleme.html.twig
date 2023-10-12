@@ -1,0 +1,55 @@
+<div>
+    <div class="row">
+        <div class="col-md-4">
+            <p><b>Matricule:</b> {{contract.employe.matricule}}</p>
+        </div>
+        <div class="col-md-4">
+            <p><b>Nom:</b> {{contract.employe.nom}}</p>
+        </div>
+        <div class="col-md-4">
+            <p><b>Prenom:</b> {{contract.employe.prenom}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <p><b>Nature contract:</b> {{contract.pnatureContract.designation}}</p>
+        </div>
+        <div class="col-md-4">
+            <p><b>Bareme:</b> {{contract.bareme.bareme}}</p>
+        </div>
+        
+    </div>
+    <hr>
+    <table class="table table-bordered  table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Type</th>
+                <th>Rubrique</th>
+                <th>Motant</th>
+                <th>Motif</th>
+                <th>Periode</th>
+            </tr>
+        </thead>
+        <tbody id="list_problemes">
+            {% for probleme in problemes %}
+                <tr id="{{probleme.id}}" class="tr_problemes">
+                    <td>{{loop.index}}</td>
+                    {% if probleme.prelevementLg %}
+                        <td>Prélévement</td>
+                        <td>{{probleme.prelevementLg.prelevement.rubrique.designation}}</td>
+                        <td>{{probleme.prelevementLg.montant}}</td>
+                    {% elseif probleme.elementEcheance %}
+                        <td>Element echeance</td>
+                        <td>{{probleme.elementEcheance.rubrique.designation}}</td>
+                        <td>{{probleme.elementEcheance.montant}}</td>
+                    {% endif %}
+                    <td>{{probleme.motif}}</td>
+                    <td><input type="month"  class="form-control probleme_periode" value="{{"now"|date_modify("+1 month")|date('Y-m')}}" min="{{"now"|date_modify("+1 month")|date('Y-m')}}"/></td>
+                </tr>
+            {% endfor%}
+        </tbody>
+    </table>
+    
+
+</div>
