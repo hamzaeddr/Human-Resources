@@ -9,6 +9,7 @@ $(document).ready(function  () {
     var ribid = 0 ;
     diplomes =  [];
     id_diplome = 0;
+    selectedDataAttr = '';
 
     function hide_show(hide,hide_2,show,show_2){
         $("body " +show).removeClass('noclick');
@@ -150,7 +151,7 @@ $(document).ready(function  () {
                 notyf.error(message);
             }
         })
-        $('#situation_familiale').on('change', function(){
+        $('body .situation_familiale').on('change', function(){
             if($(this).val() == 1) {
                 $('#nombre_enfant').prop("disabled", true);
             } else {
@@ -163,7 +164,14 @@ $(document).ready(function  () {
                 return;
             }
             const createCancelTokenHandler = createCancel();
-            let id = $(this).val()
+            let id = $(this).val();
+
+            var selectedOption = $(this).find("option:selected");
+
+            // Get the value and data-attr attribute of the selected option
+            // var selectedValue = selectedOption.val();
+             selectedDataAttr = selectedOption.data("attr");
+    
 
             try {
                 const request = await axios.get(
@@ -173,12 +181,59 @@ $(document).ready(function  () {
                 ;
                 const response = request.data;
                 $('.duree_contrat').html(response);
+
+                
             } catch (error) {
                 console.log(error);
                 const message = error.response.data;
                 notyf.error(message);
             }
-        })
+        });
+
+        $(".profil").on("change", async function(e) {
+
+            e.preventDefault();
+            if($(this).val() == ""){
+                return;
+            }
+            const createCancelTokenHandler = createCancel();
+            var profil = $(this).val();
+            
+        
+                
+                const request2 = await axios.get(
+
+                    Routing.generate('api_getbareme_contract', {'natureContrat': selectedDataAttr, 'profil':profil}),
+                    { cancelToken: createCancelTokenHandler.token }
+                );
+                const response2 = request2.data;
+                $('.bareme').html(response2);
+
+
+        });
+
+        $(".bareme").on("change", async function(e) {
+            e.preventDefault();
+            console.log("Dropdown changed");
+            if($(this).val() == ""){
+                return;
+            }
+            const createCancelTokenHandler = createCancel();
+            var selectedOption = $(this).find("option:selected");
+
+           
+             var selectedDatasal = selectedOption.data("attr");
+               
+            setTimeout(function() {
+                // Set the value of the input field
+                $('.salaire_grille').val(selectedDatasal);
+            }, 100); 
+
+
+
+        });
+
+
         $(".profile").on("change", async function(e) {
             e.preventDefault();
             if($(this).val() == ""){
@@ -285,7 +340,7 @@ $(document).ready(function  () {
  
 $('.add_diplome').on('click', function(){
     id_diplome = id_diplome + 1;
-        var Niveau = $("#nv_diplome").find(":selected").text();
+        var Niveau = $("#modal_ajouter .new_dip").find(":selected").text();
         var Diplome = $("#diplome").val();
         var Designation = $("#designation_diplome").val();
         var Ecole = $("#Ecole_diplome").val();
@@ -504,7 +559,6 @@ $('.add_diplome').on('click', function(){
                 var bareme = data[0]['bareme'];
                 var fonctionid = data[0]['fonctionid'];
                 var dossier = data[0]['dossier'];
-alert(salaireaf);
 
 
                 // $("#modal_modifier .nature_contrat option[id='" + id + "']").prop("selected", true);

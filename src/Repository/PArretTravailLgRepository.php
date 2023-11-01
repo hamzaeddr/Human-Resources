@@ -83,7 +83,7 @@ class PArretTravailLgRepository extends ServiceEntityRepository
 
    }
 
-   public function getNombreJoursArret($contractId, $periode) {
+    public function getNombreJoursArret($contractId, $periode) {
         $arretTravail =  $this->createQueryBuilder('p')
             ->select('contract.id as contract_id, periode.id as periode_id, sum(p.nombreJour) as nombreJours')
             ->innerJoin('p.arretTravail', 'arretTravail')
@@ -104,7 +104,31 @@ class PArretTravailLgRepository extends ServiceEntityRepository
             return 0;
         } 
         return $arretTravail['nombreJours'];
-   }
+    }
+    public function getMotifArretTravail($contractId, $periode) {
+        $arretTravail =  $this->createQueryBuilder('p')
+            ->select('motif.code as code, periode.id as periode_id')
+            ->innerJoin('p.arretTravail', 'arretTravail')
+            ->innerJoin('arretTravail.contract', 'contract')
+            ->innerJoin('p.periode', 'periode')
+            ->innerJoin('p.arretTravail', 'arretTravail')
+            ->innerJoin('arretTravail.motif', 'motif')
+            ->where('contract.id = :contract')
+            ->andWhere('p.periode = :periode')
+            ->andWhere('arretTravail.active = 1')
+            ->andWhere('p.active = 1')
+            ->setParameter('contract', $contractId)
+            ->setParameter('periode', $periode)
+            ->groupBy('contract.id, periode.id')
+            ->getQuery()
+            ->getResult()
+        ;
+        // dd($arretTravail);
+        if($arretTravail) {
+            return $arretTravail[0];
+        } 
+        dd('motif arret travail introuvable!');
+    }
 
 //    /**
 //     * @return PArretTravailLg[] Returns an array of PArretTravailLg objects

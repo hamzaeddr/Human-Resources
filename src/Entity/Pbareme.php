@@ -22,7 +22,7 @@ class Pbareme
     private ?int $bareme = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Designation = null;
+    private ?string $designation = null;
 
     #[ORM\Column]
     private ?int $netapayer = null;
@@ -108,12 +108,12 @@ class Pbareme
 
     public function getDesignation(): ?string
     {
-        return $this->Designation;
+        return $this->designation;
     }
 
-    public function setDesignation(string $Designation): self
+    public function setDesignation(string $designation): self
     {
-        $this->Designation = $Designation;
+        $this->designation = $designation;
 
         return $this;
     }

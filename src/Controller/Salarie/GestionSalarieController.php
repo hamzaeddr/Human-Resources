@@ -45,6 +45,7 @@ class GestionSalarieController extends AbstractController
         $pemployes = $this->em->getRepository(Pemploye::class)->findAll();
         $naturecontract = $this->em->getRepository(PnatureContract::class)->findAll();
         $pbaremes = $this->em->getRepository(Pbareme::class)->findAll();
+
         $contract = $this->em->getRepository(LContract::class)->findBy(['active'=> 1]);
         
         return $this->render('salarie/gestion_salarie/index.html.twig', [
@@ -55,7 +56,7 @@ class GestionSalarieController extends AbstractController
             'pemployes' => $pemployes,
             'contracts' => $contract,
             'naturecontract' => $naturecontract,
-            'baremes' => $pbaremes,
+            'baremes' => $pbaremes
         ]);
     } 
 

@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\LContract;
-use App\Entity\PBareme;
+use App\Entity\Pbareme;
 use App\Entity\PNiveau;
 use App\Entity\PDossier;
 use App\Entity\UsModule;
@@ -15,6 +15,7 @@ use App\Entity\NatureSalarieContrat;
 use App\Entity\PdureeContract;
 use App\Entity\PnatureContract;
 use Doctrine\Persistence\ManagerRegistry;
+use Proxies\__CG__\App\Entity\Pbareme as EntityPbareme;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -50,8 +51,24 @@ class ApiController extends AbstractController
     #[Route('/api_getdureecontrat/{natureContrat}', name: 'api_getdureecontrat', options: ['expose' => true])]
     public function api_getdureecontrat(PnatureContract $natureContrat)
     {        
-        $dureeContrats = self::dropdown($natureContrat->getPdureeContracts(),'dureé contrat');
+        $dureeContrats = self::dropdown_dure($natureContrat->getPdureeContracts(),'dureé contrat');
         return new JsonResponse($dureeContrats);
+    }
+
+    #[Route('/api_getbareme_contract/{natureContrat}/{profil}', name: 'api_getbareme_contract', options: ['expose' => true])]
+    public function api_getbareme_contract($natureContrat,$profil)
+    {        
+        $baremes = self::dropdown_bareme($this->em->getRepository(Pbareme::class)->findBy(['designation' => $natureContrat,'Profil' => $profil]),'Choix Bareme');
+        return new JsonResponse($baremes);
+    }
+
+    static function dropdown_dure($objects,$choix)
+    {
+        $data = "<option selected value=''>Choix ".$choix."</option>";
+        foreach ($objects as $object) {
+            $data .="<option value=".$object->getId()." >".$object->getNbrMois()." mois .</option>";
+         }
+         return $data;
     }
 
     static function dropdown($objects,$choix)
@@ -63,13 +80,22 @@ class ApiController extends AbstractController
          return $data;
     }
 
-
     static function dropdownBareme($objects,$choix)
     {
         $data = "<option selected value=''>Choix ".$choix."</option>";
         foreach ($objects as $object) {
 
             $data .="<option data-paye=".$object->getNetAPayer()." value=".$object->getId().">".$object->getBareme()."</option>";
+         
+        }
+         return $data;
+    }
+    static function dropdown_bareme($objects,$choix)
+    {
+        $data = "<option data-attr=''s selected value=''>".$choix."</option>";
+        foreach ($objects as $object) {
+
+            $data .="<option data-attr=".$object->getNetAPayer()." value=".$object->getId().">".$object->getBareme()."</option>";
          
         }
          return $data;

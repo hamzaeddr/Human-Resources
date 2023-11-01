@@ -65,7 +65,7 @@ class ElementfixeController extends AbstractController
             $elementFixe->setSens($fixe->sens);
             $elementFixe->setMontant($fixe->montant);
 
-            $this->em->persist($fixe);
+            $this->em->persist($elementFixe);
         }
 
         $this->em->flush();

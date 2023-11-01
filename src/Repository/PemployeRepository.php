@@ -73,15 +73,33 @@ class PemployeRepository extends ServiceEntityRepository
         $this->getEntityManager()->getRepository(PsituationFamiliale::class)->find($data->get('situation_familiale'))
     );
     $employe->setAdresse1($data->get('adresse_1'));
-    $employe->setAdresse2($data->get('adresse_2'));
+    if ($data->get('adresse_2')) {
+      $employe->setAdresse2($data->get('adresse_2'));
+
+    }
     $employe->setNationalite($data->get('nationalite'));
     $employe->setSexe($data->get('sexe'));
     $employe->setCodePostal($data->get('code_postal'));
+
+    if ($data->get('code_postal')) {
+        $employe->setCodePostal($data->get('code_postal'));
+
+  
+      }
     $employe->setVille($data->get('ville'));
     $employe->setPays($data->get('pays'));
     $employe->setTel1($data->get('telephone_1'));
-    $employe->setTel2($data->get('telephone_2'));
-    $employe->setEmail($data->get('email'));
+
+    if ($data->get('telephone_2')) {
+        $employe->setTel2($data->get('telephone_2'));
+
+  
+      }
+    if ($data->get('email')) {
+        $employe->setEmail($data->get('email'));
+
+  
+      }
     $employe->setActive(0);
   
     $this->getEntityManager()->persist($employe);

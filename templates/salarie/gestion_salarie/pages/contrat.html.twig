@@ -4,7 +4,7 @@
         <select class="select nature_contrat nature_contrat" name="nature_contrat"   required >
           <option value="" selected>Choix Nature Contract</option>
             {% for contract in naturecontract %}
-                <option id="{{contract.id}}" value="{{contract.id}}">{{contract.abreviation}}</option>
+                <option id="{{contract.id}}"  value="{{contract.id}}" data-attr ="{{contract.type}}">{{contract.designation}}</option>
             {% endfor %}
                 
         </select>
@@ -40,6 +40,26 @@
         </select>
     </div> #}
     <div class="col-md-4 mb-2">
+        <label for="profil">Profil (*)</label>
+        <select class="select profil" name="profil"  required>
+    <option value=""></option>
+    <option value="AutoEntrepreneur">AutoEntrepreneur</option>
+    <option value="<=Bac"><=Bac</option>
+    <option value="Bac+2">Bac+2</option>
+    <option value="bac+6">bac+6</option>
+    <option value="Bac+3">Bac+3</option>
+    <option value="Bac+4">Bac+4</option>
+    <option value="Bac+5">Bac+5</option>
+    <option value="Bac+6 et plus">Bac+6 et plus</option>
+    <option value="Hors Grille">Hors Grille</option>
+    <option value="Santé-Métiers">Santé-Métiers</option>
+    <option value="Stagiaire">Stagiaire</option>
+    <option value="Stagiaire_interne">Stagiaire_interne</option>
+                
+        </select>
+    </div>
+
+    <div class="col-md-4 mb-2">
         <label for="bareme">Baréme (*)</label>
         <select class="select bareme" name="bareme"  required>
           <option value="" selected>Choix Baréme</option>
@@ -60,7 +80,7 @@
     </div>
     <div class="col-md-4 mb-2">
         <label for="salaire_grille">Salaire Grille: </label>
-        <input disabled type="number"  name="salaire_grille"  class="form-control salaire_grille">
+        <input readonly type="number"  name="salaire_grille"  class="form-control salaire_grille">
     </div>
     <div class="col-md-4 mb-2">
         <label for="salaire_affecte">Salaire Affecté: </label>
@@ -69,11 +89,11 @@
     
     <div class="col-md-4 mb-2">
         <label for="ppc">PPC (*)</label>
-        <input disabled type="number" name="ppc" id="ppc" class="form-control">
+        <input  type="number" name="ppc" id="ppc" class="form-control">
     </div>
     <div class="col-md-4 mb-2">
         <label for="rpc">RPC (*)</label>
-        <input disabled type="number" name="rpc" id="rpc" class="form-control">
+        <input  type="number" name="rpc" id="rpc" class="form-control">
     </div>
     
 </div>

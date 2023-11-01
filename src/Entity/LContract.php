@@ -99,8 +99,25 @@ class LContract
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Salaireaffecte = null;
 
+
+    #[ORM\OneToMany(mappedBy: 'LContract', targetEntity: TCnssA02::class)]
+    private Collection $tCnssA02s;
+
+    #[ORM\OneToMany(mappedBy: 'contract', targetEntity: TCnssB02::class)]
+    private Collection $tCnssB02s;
+
+    #[ORM\OneToMany(mappedBy: 'contract', targetEntity: TCnssB04::class)]
+    private Collection $tCnssB04s;
+
     #[ORM\ManyToOne]
     private ?PPiece $piece = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $PPC = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $RPC = null;
+
 
     public function __construct()
     {
@@ -115,6 +132,9 @@ class LContract
         $this->prelevements = new ArrayCollection();
         $this->bulletins = new ArrayCollection();
         $this->problemes = new ArrayCollection();
+        $this->tCnssA02s = new ArrayCollection();
+        $this->tCnssB02s = new ArrayCollection();
+        $this->tCnssB04s = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -616,6 +636,16 @@ class LContract
         return $this;
     }
 
+
+    /**
+     * @return Collection<int, TCnssA02>
+     */
+    public function getTCnssA02s(): Collection
+    {
+        return $this->tCnssA02s;
+    }
+
+
     public function getPiece(): ?PPiece
     {
         return $this->piece;
@@ -624,6 +654,51 @@ class LContract
     public function setPiece(?PPiece $piece): static
     {
         $this->piece = $piece;
+
+
+        return $this;
+    }
+
+
+    public function getPPC(): ?float
+    {
+        return $this->PPC;
+    }
+
+    public function setPPC(?float $PPC): static
+    {
+        $this->PPC = $PPC;
+        return $this;
+    }
+
+
+    /**
+     * @return Collection<int, TCnssB02>
+     */
+    public function getTCnssB02s(): Collection
+    {
+        return $this->tCnssB02s;
+    }
+
+
+    /**
+     * @return Collection<int, TCnssB04>
+     */
+    public function getTCnssB04s(): Collection
+    {
+        return $this->tCnssB04s;
+    }
+
+   
+    public function getRPC(): ?float
+    {
+        return $this->RPC;
+    }
+
+    public function setRPC(?float $RPC): static
+    {
+        $this->RPC = $RPC;
+
 
         return $this;
     }

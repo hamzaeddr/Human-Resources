@@ -93,6 +93,9 @@ class Prubrique
     #[ORM\Column(nullable: true)]
     private ?int $regulArticleUgouvId = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $imposable = null;
+
 
     public function __construct()
     {
@@ -586,6 +589,18 @@ class Prubrique
     public function setRegulArticleUgouvId(?int $RegulArticleUgouvId): self
     {
         $this->regulArticleUgouvId = $RegulArticleUgouvId;
+
+        return $this;
+    }
+
+    public function isImposable(): ?bool
+    {
+        return $this->imposable;
+    }
+
+    public function setImposable(?bool $imposable): static
+    {
+        $this->imposable = $imposable;
 
         return $this;
     }

@@ -8,6 +8,8 @@ use App\Entity\PDossier;
 use App\Entity\Pemploye;
 use App\Entity\LContract;
 use App\Entity\Pfonction;
+use App\Entity\Prubrique;
+use App\Entity\LelementFixe;
 use App\Entity\PnatureContract;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -88,7 +90,6 @@ class LContractRepository extends ServiceEntityRepository
 
    public function add_contract($list)
    {
-      
         $piece = $this->getEntityManager()->getRepository(PPiece::class)->find(8); // 
 
         $Lcontract = new LContract();
@@ -111,8 +112,11 @@ class LContractRepository extends ServiceEntityRepository
             $this->getEntityManager()->getRepository(Pfonction::class)->find($list->get('fonction'))
 
         );
+       
         $Lcontract->setActive(1);
         $Lcontract->setSalaireaffecte($list->get('salaire_affecte'));
+        $Lcontract->setSalairegrille($list->get('salaire_grille'));
+        
         $Lcontract->setDateFin($date->setTimestamp(strtotime($list->get('date_fin'))));
         $Lcontract->setBareme(
              $this->getEntityManager()->getRepository(Pbareme::class)->find($list->get('bareme'))
@@ -123,10 +127,38 @@ class LContractRepository extends ServiceEntityRepository
         
         $this->getEntityManager()->persist($Lcontract);
         $this->getEntityManager()->persist($employe);
+        $this->getEntityManager()->flush();
+        $contract = $this->getEntityManager()->getRepository(LContract::class)->find($Lcontract->getId());
+        $rubrique_ppc = $this->getEntityManager()->getRepository(Prubrique::class)->find(16);
+        $rubrique_rpc = $this->getEntityManager()->getRepository(Prubrique::class)->find(37);
 
+        
+   if ($list->get('ppc')) {
+
+            $elementFixe = new LelementFixe();
+            $elementFixe->setContract($contract);
+            $elementFixe->setRubrique($rubrique_ppc);
+                $elementFixe->setSens(1);
+            $elementFixe->setMontant($list->get('ppc'));
+
+            $this->getEntityManager()->persist($elementFixe);
+            $this->getEntityManager()->flush();
+        # co
+        }
+        if ($list->get('rpc')) {
+
+            $elementFixe = new LelementFixe();
+            $elementFixe->setContract($contract);
+            $elementFixe->setRubrique($rubrique_rpc);
+            $elementFixe->setSens(-1);
+            $elementFixe->setMontant($list->get('rpc'));
     
+            $this->getEntityManager()->persist($elementFixe);
+            $this->getEntityManager()->flush();
 
-    $this->getEntityManager()->flush();
+        }
+   
+   
 
     return $Lcontract->getId();
 

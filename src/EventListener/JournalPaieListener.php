@@ -236,21 +236,6 @@ class JournalPaieListener {
                         }
                         $type = "netpaye";
 
-                        $halfMontantPretArray = [];
-                        // calculate the montant for each prelevement 
-                        foreach ($prevelementCabs as $key => $prevelementCab) {
-                            if($prevelementCab->getMontant() > 0) {
-                                $halfMontantPret = round(($prevelementCab->getMontant() / count($primes)), 2);
-
-                                array_push($halfMontantPretArray, [
-                                    'id' => $prevelementCab->getId(),
-                                    'prelevement' => $prevelementCab,
-                                    'montant' => $halfMontantPret,
-                                    'montantInitial' => $prevelementCab->getMontant()
-                                ]);
-                            }
-                        }
-                            
                         $primesArrayInitital = [];
                         // initialize the montant for each prime 
                         foreach($primes as $prime) {
@@ -258,60 +243,80 @@ class JournalPaieListener {
                                 'id' => $prime->getId(),
                                 'prime' => $prime,
                                 'montantInitial' => $prime->getMontant(),
-                                'montantFinal' => $prime->getMontant()
+                                'montantFinal' => $prime->getMontant(),
+                                'montantMinus' => 0
                             ]);
                         }
-                        foreach ($halfMontantPretArray as $index => $value) {
+                        usort($primesArrayInitital, fn($a, $b) => $a['montantInitial'] <=> $b['montantInitial']);
+                       
+                        $halfMontantPretArray = [];
+                        // calculate the montant for each prelevement 
+                       
+                        foreach ($prevelementCabs as $key => $prevelementCab) {
+                            if($prevelementCab->getMontant() > 0) {
+                                $nombrePrimes = count($primes);
+                                $halfMontantPret = round(($prevelementCab->getMontant() / count($primes)), 2);
+                                $reste = 0;
+                                $details = [];
+                                $montantMinusInitial = 0;
+                                foreach ($primesArrayInitital as $key => $primeArray) {
+                                   
+                                    if($primeArray['montantFinal'] == 0){
+                                        $nombrePrimes = $nombrePrimes - 1;
+                                        $reste = $halfMontantPret - $primeArray['montantFinal'];
+                                        if($nombrePrimes == 0) {
+                                            $halfReste = round(($reste / 1), 2);
+                                        } else {
+                                            $halfReste = round(($reste / $nombrePrimes), 2);
+                                        }
+                                        $halfMontantPret += $halfReste;
+                                        $montant = 0;
+                                    }
+                                   
+                                    elseif($primeArray['montantFinal'] < $halfMontantPret) {
+                                        // echo $primeArray['montantFinal'] . '/'.$halfMontantPret;
+                                        // die;
+                                        $reste = $halfMontantPret - $primeArray['montantFinal'];
+                                        $primesArrayInitital[$key]['montantMinus'] = $primeArray['montantFinal'];
+                                        $montant = $primeArray['montantFinal'];
+                                        $primesArrayInitital[$key]['montantFinal'] = 0;
+                                        $montantMinusInitial += $montant;
+                                        $nombrePrimes = $nombrePrimes - 1;
+                                        if($nombrePrimes == 0) {
+                                            $halfReste = round(($reste / 1), 2);
+                                        } else {
+                                            $halfReste = round(($reste / $nombrePrimes), 2);
+                                        }
+                                        $halfMontantPret += $halfReste;
+                                    } else {
+                                        if($prevelementCab->getMontant() < $montantMinusInitial + $halfMontantPret) {
+                                            $halfMontantPret = round($prevelementCab->getMontant() - $montantMinusInitial, 2);
+                                        }
+                                        $montant = $halfMontantPret;
+                                        $montantMinusInitial += $montant;
+                                        
 
-                            $reste = 0;
+                                        $primesArrayInitital[$key]['montantMinus'] = $primesArrayInitital[$key]['montantMinus'] + $halfMontantPret;
+                                        $primesArrayInitital[$key]['montantFinal'] = round($primesArrayInitital[$key]['montantFinal'] - $halfMontantPret, 2);
+                                    }
 
-                            $montantInitial = $value['montantInitial'];
-                            $montantMinus = 0;
-                            foreach($primesArrayInitital as $key => $prime){
-                                if($value['montant'] >= $montantInitial) {
-                                    $montantMinus = $montantInitial;
-                                    $montantInitial = 0;
-                                } else {
-                                    $montantInitial -= $value['montant'];
-                                    $montantMinus = $value['montant'];
-                                }
-                                // if($bulletin->getId() ==312) {
-                                //     echo $montantMinus . '//';
-                                // }
-                                if($montantMinus > ($prime['montantFinal']  + $reste)) {
-                                    $minus = $montantMinus - ($prime['montantFinal'] + $reste);
-                                    $reste += $minus;
-                                    $montant = ($prime['montantFinal'] + $reste);
-                                    
-                                } else {
-                                    $montant = $prime['montantFinal'] - ($montantMinus + $reste);
-                                }
-
-                                $montantFinal = round(($primesArrayInitital[$key]['montantFinal'] - $montant), 2);
-                                
-                                if(array_key_exists('details', $halfMontantPretArray[$index])) {
-                                    array_push($halfMontantPretArray[$index]['details'], [
-                                        'prime' => $prime['prime'],
-                                        'montant' => $montantFinal
+                                    array_push($details, [
+                                        'prime' => $primeArray['prime'],
+                                        'montant' => $montant
                                     ]);
-                                } else {
-                                    $halfMontantPretArray[$index]['details'] =[[
-                                        'prime' => $prime['prime'],
-                                        'montant' => $montantFinal
-                                    ]];
                                 }
+                               
+                                array_push($halfMontantPretArray, [
+                                    'id' => $prevelementCab->getId(),
+                                    'prelevement' => $prevelementCab,
+                                    'montant' => $halfMontantPret,
+                                    'montantInitial' => $prevelementCab->getMontant(),
+                                    'details' => $details
+                                ]);
                                 
-
-                                $key = array_search($prime['id'], array_column($primesArrayInitital, 'id'));
-                                $primesArrayInitital[$key]['montantFinal'] = $montantFinal;
                             }
-                            // if($bulletin->getId() ==312) {
-                            // die;
-                            // }
-
                         }
 
-                            
                         foreach($primesArrayInitital as $primesArray ) {
                             $pcompteComptable = $this->entityManager->getRepository(PCompteComptable::class)->findOneBy(['rubrique' => $primesArray['prime']->getRubrique(), 'natureContract' => $bordoreau->getNatureContract()]);
                             
@@ -321,7 +326,7 @@ class JournalPaieListener {
                             if(count($halfMontantPretArray) == 0) {
                                 $journalBulletinLg->setMontant(round($primesArray['montantInitial'], 2));
                             } else {
-                                $journalBulletinLg->setMontant(round($primesArray['montantInitial'] - $primesArray['montantFinal'], 2));
+                                $journalBulletinLg->setMontant(round($primesArray['montantFinal'], 2));
                             }
                             $journalBulletinLg->setQte($pcompteComptable->getQte());
                             $journalBulletinLg->setCodeComptable($pcompteComptable->getCompteComptable());
@@ -423,7 +428,6 @@ class JournalPaieListener {
                         }                      
 
                     }
-
                     if(number_format($charge, 2) == 0) {
                         $bordoreau->setStatut(
                             $this->entityManager->getRepository(PStatut::class)->find(2)
@@ -435,7 +439,6 @@ class JournalPaieListener {
                     }
                     
                 }
-                // die;
                 $this->entityManager->flush();
             }
         }
