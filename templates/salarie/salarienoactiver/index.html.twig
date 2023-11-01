@@ -1,20 +1,116 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SalarienoactiverController!{% endblock %}
+{% block title %}RH - Gestion des salaries{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+  {# <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> #}
+    <style>
+         /* Add custom row colors */
+        {# .table tbody tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        } #}
+
+        /* Style contract icons */
+        .checked-icon {
+            color: green;
+        }
+
+        .unchecked-icon {
+            color: red;
+        }
+
+        /* Centered vertical alignment for contract icons */
+        {# .contract-cell {
+            display: flex;
+            align-items: center;
+        } #}
+
+        /* Style text in specific columns */
+        {# .table td:nth-child(4) {
+            font-weight: bold;
+            color: blue;
+        }
+
+        .table td:nth-child(5) {
+            font-style: italic;
+            color: purple;
+        } #}
+       
 </style>
+{# //////////////////////////////////////////// #}
+    {% include 'includes/actions.html.twig' %}
+        <div class="col-12 mb-4">
+            <div class="card  border-0 shadow">
+                <div class="card-body p-2 m-2">
+                  
+                    <table id="example" class="table table-bordered table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Matricule</th>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>CIN</th>
+                            <th>Contract</th>
+                            <th>Nature contrat</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+            </div>
+        </div>
+    </div>
+{# //////////////////////////////////////////// #}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/human_resources_app/src/Controller/Salarie/SalarienoactiverController.php'|file_link(0) }}">src/Controller/Salarie/SalarienoactiverController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/human_resources_app/templates/salarie/salarienoactiver/index.html.twig'|file_link(0) }}">templates/salarie/salarienoactiver/index.html.twig</a></code></li>
-    </ul>
+
+
+    {# {% include 'salarie/gestion_salarie/modals/contract_detail.html.twig' %} #}
+<div class="modal right come-from-modal fade" id="contractModal"  role="dialog" aria-labelledby="contractModalLabel" style="display: none;" aria-hidden="true">
+
+    <div class="modal-dialog" role="document" style="width:40%;max-width:1000px !important">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contractModalLabel">Detail contrats </h5>
+                
+                <a type="button" class="btn-close" data-bs-dismiss="modal" data-dismiss="modal" aria-label="Close"></a>
+
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered table-striped" id="contrat_list_details">
+                    <thead>
+                        <tr>
+                            <th>Contrat</th>
+                            <th>Nature contrat</th>
+                            <th>Type contract</th>
+                            <th width="20%"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="contract_body">
+                     
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary contractdetbtn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
+
+    {% include 'salarie/gestion_salarie/modals/ajouter.html.twig' %}
+    {% include 'salarie/gestion_salarie/modals/modifier.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+    {{parent()}}
+    
+
+    <script>
+  
+</script>
+    {{ encore_entry_script_tags('salarie_salarie_no_active') }}
 {% endblock %}

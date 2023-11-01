@@ -193,6 +193,7 @@ $(document).ready(function  () {
 
 
     $("#add_echeance").on('submit', async function(e) {
+        
         e.preventDefault();
         var button = $(document.activeElement);
         if(echeances.length == 0) {

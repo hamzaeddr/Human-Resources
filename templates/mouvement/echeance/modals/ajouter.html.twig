@@ -14,7 +14,12 @@
                             <select class=" text-uppercase form-control employe_select select" name="contract">
                                 <option value="">Choix employe</option>
                                 {% for contract in contracts %}
-                                    <option data-json='{"nom": "{{contract.employe.nom}}", "prenom": "{{contract.employe.prenom}}","contract_id": "{{contract.id}}", "bareme_id": "{{contract.bareme.id}}", "matricule": "{{contract.employe.code}}", "nature": "{{contract.bareme.designation}}", "bareme": "{{contract.bareme.bareme}}", "cin": "{{contract.employe.cin}}", "date_anciennete": "{{contract.dateAnciennete|date('d/m/Y')}}", "contract": "{{contract.code}}"}' data-name="{{contract.employe.nom|capitalize}} {{contract.employe.prenom|capitalize}}"  value="{{contract.id}}">{{contract.employe.nom|capitalize}} {{contract.employe.prenom|capitalize}}</option>
+                                    <option data-json='{"nom": "{{contract.employe.nom}}", "prenom": "{{contract.employe.prenom}}","contract_id": "{{contract.id}}",
+                                     "bareme_id": "{{contract.bareme.id}}", "matricule": "{{contract.employe.code}}", "nature": "{{contract.pnatureContract.type}}", 
+                                     "bareme": "{{contract.bareme.bareme}}", "cin": "{{contract.employe.cin}}", "date_anciennete": "{{contract.dateAnciennete|date('d/m/Y')}}", 
+                                     "contract": "{{contract.code}}"}' data-name="{{contract.employe.nom|capitalize}} {{contract.employe.prenom|capitalize}}" 
+                                      value="{{contract.id}}">{{contract.employe.nom|capitalize}} {{contract.employe.prenom|capitalize}}</option>
+                                      
                                 {% endfor %}
                             </select>
                         </div>

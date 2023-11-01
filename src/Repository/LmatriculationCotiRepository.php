@@ -140,30 +140,52 @@ class LmatriculationCotiRepository extends ServiceEntityRepository
    {
 
     //cnss
+    if ($list->get('cnssid') =='0'){
+
+    }
+        else{
+    # code...
     $cnss = $this->getEntityManager()->getRepository(LmatriculationCoti::class)->find($list->get('cnssid'));
+
     $date = new \DateTime();
     $cnss->setDateAffiliation($date->setTimestamp(strtotime($list->get('date_cnssup'))));
+
     $cnss->setCode($list->get('cnssup'));
    
+
     $this->getEntityManager()->persist($cnss);
+}
 
     ///cimr
+    if ($list->get('cimrid') == '0' ) {
+    }
+    else {
 
     $cimr = $this->getEntityManager()->getRepository(LmatriculationCoti::class)->find($list->get('cimrid'));
+
     $date = new \DateTime();
+
     $cimr->setDateAffiliation($date->setTimestamp(strtotime($list->get('date_cimr'))));
+   
     $cimr->setCode($list->get('cimrup'));
     
     $this->getEntityManager()->persist($cimr);
 
+    }
+
     //rib
+    if ($list->get('ribid') == '0' ) {
+    }
+    else{
+
     $rib = $this->getEntityManager()->getRepository(Lrib::class)->find($list->get('ribid'));
+
     $rib->setCode($list->get('ribup'));
     
     $this->getEntityManager()->persist($rib);
-
+    }
     $this->getEntityManager()->flush();
-    return $rib;
+    return 'ok';
 
    }
 //    /**

@@ -46,6 +46,7 @@ class PArretTravailLgRepository extends ServiceEntityRepository
    {
       
     foreach ($data as $range) {
+        
         $Arret = new PArretTravailLg();
 
         $Arret->setArretTravail(

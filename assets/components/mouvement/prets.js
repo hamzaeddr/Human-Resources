@@ -50,8 +50,10 @@ $(document).ready(function  () {
                 render: function(data, type, full, meta) {
                     console
                     if(data.date) {
+                        
                         return moment(data.date).format('YYYY-MM-DD HH:mm:ss');
                     }
+                    
                     return "";
                 }
             },

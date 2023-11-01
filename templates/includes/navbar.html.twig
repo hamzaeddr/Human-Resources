@@ -33,6 +33,10 @@
   font-size: 24px;
   font-weight: bold;
 }
+.inline-elements {
+    display: inline;
+}
+
 </style>
 
 <nav class="navbar navbar-top navbar-expand navbar-dashboard navbar-dark ps-0 pe-2 pb-0">
@@ -52,8 +56,23 @@
       <!-- Navbar links -->
       <ul class="navbar-nav align-items-center">
       
-            <div class="navbar-logo"><h2>{{app.session.get('dossier').abreviation}}</H2></div>
+            {# <div class="navbar-logo"><h2>{{app.session.get('dossier').abreviation}}</H2></div> #}
         
+       <a href="{{ path('app_site') }}" class="navbar-logo" style="font-size: 16px;">
+    <div class="inline-elements">
+       <span>
+            <span class="sidebar-icon">
+            <i class="icon icon-xs me-2 fas fa-exchange-alt"></i>
+                          </span> 
+            <span class="sidebar-text">{{ app.session.get('dossier').abreviation }}</span>
+          </span>
+
+    </div>
+</a>
+
+
+
+
         <li class="nav-item dropdown ms-lg-3">
           <a class="nav-link dropdown-toggle pt-1 px-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <div class="media d-flex align-items-center">

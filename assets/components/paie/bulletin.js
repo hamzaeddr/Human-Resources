@@ -160,6 +160,7 @@ $(document).ready(function  () {
             notyf.error(message);
         }
     })
+    
     $("body").on('click', ".show_bulletin", async function() {
         notyf.open({
             type:"info",
@@ -197,6 +198,7 @@ $(document).ready(function  () {
             notyf.error(message);
         }
     })
+
     $("body").on('click', ".bulletin_download", async function() {
         window.open(Routing.generate('app_bulletin_employe_bulletin_print', {bulletin: $(this).attr('id')}), '_blank');
     })

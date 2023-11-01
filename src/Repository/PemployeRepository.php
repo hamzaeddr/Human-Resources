@@ -56,6 +56,24 @@ class PemployeRepository extends ServiceEntityRepository
            ->getResult()
        ;
    }
+   public function findEmployeesNotInLContract()
+   {
+       $qb = $this->createQueryBuilder('pe');
+   
+       $subQuery = $this->getEntityManager()->createQueryBuilder();
+       $subQuery
+           ->select('employe.id')
+           ->from('App\Entity\LContract', 'lcontract')
+           ->innerJoin('lcontract.employe', 'employe');
+
+   
+       $qb
+           ->where($qb->expr()->notIn('pe.id', $subQuery->getDQL()))
+           ->orderBy('pe.id', 'ASC');
+   
+       return $qb->getQuery()->getResult();
+   }
+   
 
    public function New_employe($data)
    {

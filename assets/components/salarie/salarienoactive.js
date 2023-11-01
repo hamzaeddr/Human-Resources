@@ -27,7 +27,7 @@ $(document).ready(function  () {
             
             order: [[0, "desc"]],
             ajax: {
-                url: Routing.generate('app_salarie_salarie_list'),
+                url: Routing.generate('app_salarienoactive_list'),
                 type: "get",
                 beforeSend: function(jqXHR) {
                     // If there's a previous jqXHR object, abort it

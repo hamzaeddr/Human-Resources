@@ -56,7 +56,6 @@ class CalculPaieService
 
         $rubriqueSalaireBase = $this->em->getRepository(Prubrique::class)->find(1);
         $baremeBruteSalaireDeBase = $this->em->getRepository(PbaremeBrute::class)->findOneBy(['bareme' => $contract->getBareme(), 'rubrique' => $rubriqueSalaireBase]);
-        
         $this->salaireBaseTheorique = 26 * $baremeBruteSalaireDeBase->getTauxPs();
         $this->salaireBase = $nombreJourTravails * $baremeBruteSalaireDeBase->getTauxPs();
 

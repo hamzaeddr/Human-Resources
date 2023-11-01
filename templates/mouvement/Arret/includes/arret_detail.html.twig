@@ -1,0 +1,37 @@
+
+<div>
+  
+    <div class="row">
+        <div class="col-md-4">
+            {# <p><b>Nature contract:</b> {{bulletin.contract.pnatureContract.designation}}</p> #}
+        </div>
+       
+    </div>
+    
+    <hr>
+    <table class="table table-bordered  table-striped" id="list_arret_details">
+        <thead>
+            <tr>
+                <th>ID Arret LG</th>
+                <th>Period</th>
+                <th>Date debut</th>
+                <th>Date Fin</th>
+                <th>Nomber Jour</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for Arretlg in arretLgs %}
+                <tr >
+                    <td>{{Arretlg.id}}</td>
+                    <td>{{Arretlg.periode.abreviation}}</td>
+                    <td>{{Arretlg.dateDebut|date('Y-m-d H:i:s')}}</td>
+                    <td>{{Arretlg.dateFin|date('Y-m-d H:i:s')}}</td>
+                    <td>{{Arretlg.nombreJour}}</td>
+                   
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+
+</div>

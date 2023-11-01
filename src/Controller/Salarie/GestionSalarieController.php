@@ -216,7 +216,7 @@ class GestionSalarieController extends AbstractController
         $queryBuilder = $this->em->createQueryBuilder()
         ->select('contract.id as id,p.id as employeid,n.id as pnatureid,
                   n.Abreviation,n.designation,contract.date_fin,contract.date_debut,f.id as fonctionid,f.Designation as fonction,
-                  contract.Salaireaffecte,d.Designation as dure,d.id as iddure,b.id as bareme,ds.id as dossier')
+                  contract.Salaireaffecte,d.Designation as dure,d.id as iddure,b.id as bareme,ds.id as dossier,contract.Salairegrille,contract.PPC,contract.RPC,b.Profil')
         ->from(LContract::class, 'contract')
         ->innerJoin('contract.employe', 'p')
         ->innerJoin('contract.pnatureContract', 'n')
@@ -228,7 +228,7 @@ class GestionSalarieController extends AbstractController
         ->andWhere('contract.id = :contractid')
         ->setParameter('contractid', $contract_id);
         $results = $queryBuilder->getQuery()->getResult();
-        
+        // dd($results);
         return new JsonResponse($results);        
 
     }
@@ -253,11 +253,13 @@ class GestionSalarieController extends AbstractController
         ->from(LContract::class, 'contract')
         ->leftJoin('contract.lmatriculationCotis', 'l')
         ->leftJoin('contract.lribs', 'r')
-        ->innerJoin('l.type_id', 't')
+        ->leftJoin('l.type_id', 't')
         ->Where('contract.active = 1')
         ->andWhere('contract.id = :contractid')
         ->setParameter('contractid', $contract_id);
         $results = $queryBuilder->getQuery()->getResult();
+
+
         foreach ($results as &$result) {
             $result['date_affiliation'] = $result['date_affiliation']->format('Y-m-d');
         }

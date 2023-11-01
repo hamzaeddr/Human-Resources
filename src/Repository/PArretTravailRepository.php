@@ -45,15 +45,17 @@ class PArretTravailRepository extends ServiceEntityRepository
    public function add_Arret($list)
    {
       
-
         $Arret = new PArretTravail();
         $Arret->setContract(
+            
             $this->getEntityManager()->getRepository(LContract::class)->find($list->get('id_emp_arret'))
         );
         $Arret->setMotif(
+
             $this->getEntityManager()->getRepository(PMotif::class)->find($list->get('motif_id'))
 
         );
+
         $date = new \DateTime();
         $Arret->setDateDebut($date->setTimestamp(strtotime($list->get('datedebut'))));
       
@@ -72,6 +74,7 @@ class PArretTravailRepository extends ServiceEntityRepository
     
 
     $this->getEntityManager()->flush();
+    // dd($Arret);
 
     return $Arret->getId();
 
