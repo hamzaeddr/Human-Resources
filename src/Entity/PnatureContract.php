@@ -33,9 +33,6 @@ class PnatureContract
     #[ORM\OneToMany(mappedBy: 'pnatureContract', targetEntity: LContract::class)]
     private Collection $contract_id;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $type = null;
-
     #[ORM\OneToMany(mappedBy: 'natureContract', targetEntity: PBordereau::class)]
     private Collection $bordereau;
 
@@ -44,6 +41,9 @@ class PnatureContract
 
     #[ORM\Column(nullable: true)]
     private ?int $partenaireId = null;
+
+    #[ORM\ManyToOne(inversedBy: 'pnatureContracts')]
+    private ?PtypeContract $type = null;
 
     public function __construct()
     {
@@ -178,18 +178,6 @@ class PnatureContract
         return $this;
     }
 
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(?string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, PBordereau>
      */
@@ -258,6 +246,18 @@ class PnatureContract
     public function setPartenaireId(?int $partenaireId): self
     {
         $this->partenaireId = $partenaireId;
+
+        return $this;
+    }
+
+    public function getType(): ?PtypeContract
+    {
+        return $this->type;
+    }
+
+    public function setType(?PtypeContract $type): static
+    {
+        $this->type = $type;
 
         return $this;
     }

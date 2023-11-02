@@ -118,6 +118,9 @@ class LContract
     #[ORM\Column(nullable: true)]
     private ?float $RPC = null;
 
+    #[ORM\Column(length: 70, nullable: true)]
+    private ?string $matriculeAncien = null;
+
 
     public function __construct()
     {
@@ -699,6 +702,18 @@ class LContract
     {
         $this->RPC = $RPC;
 
+
+        return $this;
+    }
+
+    public function getMatriculeAncien(): ?string
+    {
+        return $this->matriculeAncien;
+    }
+
+    public function setMatriculeAncien(?string $matriculeAncien): static
+    {
+        $this->matriculeAncien = $matriculeAncien;
 
         return $this;
     }
