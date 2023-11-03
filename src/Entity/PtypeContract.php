@@ -21,6 +21,9 @@ class PtypeContract
     #[ORM\OneToMany(mappedBy: 'type', targetEntity: PnatureContract::class)]
     private Collection $pnatureContracts;
 
+    #[ORM\Column(length: 70, nullable: true)]
+    private ?string $abreviation = null;
+
     public function __construct()
     {
         $this->pnatureContracts = new ArrayCollection();
@@ -69,6 +72,18 @@ class PtypeContract
                 $pnatureContract->setType(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAbreviation(): ?string
+    {
+        return $this->abreviation;
+    }
+
+    public function setAbreviation(?string $abreviation): self
+    {
+        $this->abreviation = $abreviation;
 
         return $this;
     }
