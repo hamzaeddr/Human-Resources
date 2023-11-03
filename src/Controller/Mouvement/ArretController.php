@@ -44,7 +44,10 @@ class ArretController extends AbstractController
     #[Route('/', name: 'app_mouvement_arret', options:['expose' => true])]
     public function index(Request $request): Response
     {
-  
+        $now = new DateTime();
+
+        // Get the current date in a specific format (e.g., 'Y-m-d H:i:s')
+        $currentDate = $now->format('Y-m');
        
         $dossier = $request->getSession()->get('dossier');
         $operations = $this->api->check($this->getUser(), 'app_mouvement_arret', $this->em, $request);
@@ -83,7 +86,7 @@ class ArretController extends AbstractController
             'motifs' => $pmotif,
             'operations' => $operations,
             'pemployes' => $pemployes,
-            // 'results' => $results,
+            'date' => $currentDate,
         ]);
 
     }
@@ -94,16 +97,60 @@ class ArretController extends AbstractController
         $startDate = $request->get('datedebut');
         $endDate = $request->get('datefin');
         $dateRanges = $this->generateDateRange($startDate, $endDate);    
-          
+        //   dd($dateRanges);
       
         // test period exist : 
+
+//         $arret = $this->em->getRepository(PArretTravail::class)->add_Arret($request);
+// // dd($request);
+
+//         $arret_lg = $this->em->getRepository(PArretTravailLg::class)->add_Arret_lg($request,$dateRanges,$arret);
+
+        return new JsonResponse($dateRanges);        
+       
+    }
+    
+    #[Route('/arret_traitement_verification', name: 'arret_traitement_verification', options:['expose' => true])]
+    public function arret_traitement_verification(Request $request): Response
+    {
+        $id_cnt = $request->get('id_emp_arret');
+        // $endDate = $request->get('datefin');
+        // $dateRanges = $this->generateDateRange($startDate, $endDate);    
+        // //   dd($dateRanges);
+    //   dd($request->get('editedData'));
+        // test period exist : 
+
+        foreach ($request->get('editedData') as  $sheet) {
+          
+           
+            $period_exist = $this->period_exist($id_cnt, $this->em);  
+          if ($period_exist) {
+    
+            foreach ($period_exist as $period) {
+                       
+                        if($sheet['period'] == $period['code']){
+    
+                            $days = $sheet['days'] + $period['nbr'];
+    
+                            if ($days > 26) {
+                                dd('error');
+                                $error = 1;
+                                $emp = $sheet[1];
+                                $prd = $period['code'];
+                            }
+                            
+                        }
+                        
+                    }
+          }
+        }
 
         $arret = $this->em->getRepository(PArretTravail::class)->add_Arret($request);
 // dd($request);
 
-        $arret_lg = $this->em->getRepository(PArretTravailLg::class)->add_Arret_lg($request,$dateRanges,$arret);
+        $arret_lg = $this->em->getRepository(PArretTravailLg::class)->add_Arret_lg($request,$request->get('editedData'),$arret);
 
-        return new JsonResponse($arret);        
+        return new JsonResponse($arret_lg);        
        
     }
 
@@ -125,6 +172,7 @@ class ArretController extends AbstractController
             $daysInMonth = $monthEndDate->diff($currentDate)->days + 1; // (30-09-2023 - 04-09-2023) + 1 
 
             $periode = $this->calculPaieService->getPeriode($currentDate->format('mY'));
+            $period_my = $currentDate->format('mY');
             
             if($daysInMonth > 26){
                 $daysInMonth = 26;
@@ -135,6 +183,7 @@ class ArretController extends AbstractController
                 'end' => $monthEndDate->format('Y-m-d'),
                 'days' => $daysInMonth,
                 'period' => $periode->getid(),
+                'period_my' => $period_my,
             ];
     
             $currentDate->modify('first day of next month');
@@ -150,7 +199,7 @@ class ArretController extends AbstractController
                         INNER JOIN parret_travail ON parret_travail_lg.arret_travail_id=parret_travail.id
                         INNER JOIN lcontract ON lcontract.id=parret_travail.contract_id
                         INNER JOIN periode ON periode.id=parret_travail_lg.periode_id 
-                        where lcontract.employe_id=$emp_id group BY periode.id";
+                        where lcontract.id=$emp_id group BY periode.id";
                         // dd($query);
                          $stmt = $em->getConnection()->prepare($query);
                          $newstmt = $stmt->executeQuery();   
@@ -265,11 +314,12 @@ public function epreuveCanvas_motif() {
     public function app_mouvement_arret_mass_upload(Request $request ): Response
     {
         // $dossier = $this->em->getRepository(PDossier::class)->find($request->get('dossier'));
+        $dossier = $request->getSession()->get('dossier');
         $error = 0;
-        $code_emp = 0;
         $prd = '';
         $reader = new Reader();
         $spreadsheet = $reader->load($request->files->get('file'));
+        $period = $request->get('period');
         $worksheet = $spreadsheet->getActiveSheet();
         $spreadSheetArys = $worksheet->toArray();
 
@@ -278,16 +328,65 @@ public function epreuveCanvas_motif() {
         // dd($spreadSheetArys);
         $count = 0;
         foreach ($spreadSheetArys as $key => $sheet) {
-         $pemployes = $this->em->getRepository(Pemploye::class)->findBy(['code' => $sheet[1]]);
-         $id_emp = 0;
-        foreach ($pemployes as $employe ) {
-            $id_emp = $employe->getId();
-        }
+
+         $pempl = $this->em->getRepository(LContract::class)->findBy(['dossier' => $dossier, 'id' => $sheet[1]]);
+            if (empty($pempl)) {
+                # code...
+                $error = 1;
+                return new JsonResponse('L employe avec contrat '.$sheet[1].' introvable dans ce site', 500);
+
+            }
+           
+        //  $id_emp = 0;
+        // foreach ($pemployes as $employe ) {
+        //     $id_emp = $employe->getId();
+        // }
         $startDate = $sheet[2];
+        $parsedDate = strtotime($startDate);
+        if ($parsedDate !== false) {
+            $startDate = date("Y-m-d", $parsedDate);
+        }
         $endDate = $sheet[3];
-        $code_emp = $sheet[1];
+        $parsedDate = strtotime($endDate);
+        if ($parsedDate !== false) {
+            $endDate = date("Y-m-d", $parsedDate);
+        }
+                $code_emp = $sheet[1];
+            
+        // Extract the year and month from the period, start date, and end date
+        list($periodYear, $periodMonth) = explode('-', $period);
+        list($startYear, $startMonth, $startDay) = explode('-', $startDate);
+        list($endYear, $endMonth, $endDay) = explode('-', $endDate);
+
+        // Convert year and month components to integers
+        $periodYear = (int)$periodYear;
+        $periodMonth = (int)$periodMonth;
+        $startYear = (int)$startYear;
+        $startMonth = (int)$startMonth;
+        $endYear = (int)$endYear;
+        $endMonth = (int)$endMonth;
+
+        // Calculate the difference in months between period and start date
+        $monthsDifference = ($periodYear - $startYear) * 12 + ($periodMonth - $startMonth);
+
+        // Update the end date by adding the months difference
+        $endMonth += $monthsDifference;
+        while ($endMonth > 12) {
+            $endMonth -= 12;
+            $endYear++;
+        }
+
+        // Update $startdate to match $period
+        $startMonth = $periodMonth;
+        $startYear = $periodYear;
+
+        // Update $enddate
+        $endDate = sprintf("%04d-%02d-%02d", $endYear, $endMonth, $endDay);
+        $startDate = sprintf("%04d-%02d-%02d", $startYear, $startMonth, $startDay);
+
+
         $dateRanges = $this->generateDateRange($startDate, $endDate);  
-        $period_exist = $this->period_exist($id_emp, $this->em);  
+        $period_exist = $this->period_exist($sheet[1], $this->em);  
       if ($period_exist) {
 
         foreach ($period_exist as $period) {
@@ -299,7 +398,7 @@ public function epreuveCanvas_motif() {
 
                         if ($days > 26) {
                             $error = 1;
-                            $emp = $code_emp;
+                            $emp = $sheet[1];
                             $prd = $period['code'];
                         }
                         
@@ -313,25 +412,25 @@ public function epreuveCanvas_motif() {
     if($error == 0){
     foreach ($spreadSheetArys as $key => $sheet) {
         $newArray = [];
-        $pemployes = $this->em->getRepository(Pemploye::class)->findBy(['code' => $sheet[1]]);
         // $pemployes = $this->em->getRepository(Pemploye::class)->findBy(['code' => $sheet[1]]);
-        $contract = $this->em->getRepository(LContract::class)->findOneBy(['active'=> 1 , 'employe' =>$pemployes]);
-        $id_emp = 0;
-        if ($contract) {
-            $id_emp = $contract->getId();
+        // // $pemployes = $this->em->getRepository(Pemploye::class)->findBy(['code' => $sheet[1]]);
+        // $contract = $this->em->getRepository(LContract::class)->findOneBy(['active'=> 1 , 'employe' =>$pemployes]);
+        // $id_emp = 0;
+        // if ($contract) {
+        //     $id_emp = $contract->getId();
 
-        }
+        // }
      
         $newArray = new ParameterBag([
-            "id_emp_arret" => $id_emp, // Combine elements 0 and 1
+            "id_emp_arret" => $sheet[1], // Combine elements 0 and 1
             "motif_id" => $sheet[0], // Element 2
             "datedebut" => date('Y-m-d', strtotime($sheet[2])), // Format date for element 3
             "datefin" => date('Y-m-d', strtotime($sheet[3])), // Format date for element 4
             "datereprise" => date('Y-m-d', strtotime($sheet[4])), 
         ]);
 
-            $startDate = $sheet[2];
-            $endDate = $sheet[3];
+            // $startDate = $sheet[2];
+            // $endDate = $sheet[3];
             $dateRanges = $this->generateDateRange($startDate, $endDate);  
             $period_exist = $this->period_exist($newArray->get('id_emp_arret'), $this->em);  
           
@@ -343,7 +442,7 @@ public function epreuveCanvas_motif() {
 
     else{
         // dd($employe->getcode());
-        return new JsonResponse('L employe avec le matricule'.$employe->getcode().' a plusieurs de 26 jrs periode  '.$prd, 500);
+        return new JsonResponse('L employe avec le matricule'.$emp.' a plusieurs de 26 jrs periode  '.$prd, 500);
 
     }
 

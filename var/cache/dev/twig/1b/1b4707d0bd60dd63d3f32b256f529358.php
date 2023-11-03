@@ -123,6 +123,6 @@ class __TwigTemplate_c6b8f5486ab86416bb55826df8b7a05a extends Template
  <hr>
 
  <button type=\"submit\"  class=\"btn btn-secondary\" id=\"cnss_btn\" style=\"float:right;\" form=\"new_cnss\">Suivant</button>
-", "salarie/gestion_salarie/pages/cnss_rib.html.twig", "C:\\xampp\\htdocs\\Human-Resources\\templates\\salarie\\gestion_salarie\\pages\\cnss_rib.html.twig");
+", "salarie/gestion_salarie/pages/cnss_rib.html.twig", "C:\\xampp\\htdocs\\SIRH\\templates\\salarie\\gestion_salarie\\pages\\cnss_rib.html.twig");
     }
 }

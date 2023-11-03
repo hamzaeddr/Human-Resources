@@ -62,9 +62,17 @@ class PArretTravailLgRepository extends ServiceEntityRepository
         $Arret->setNombreJour($range['days']);
       
         $Arret->setActive(1);
-       
+        
+        $period = $this->getEntityManager()->getRepository(Periode::class)->find($range['period']);
+
+       if (empty($period)) {
+        
+            $period = $this->getEntityManager()->getRepository(Periode::class)->findOneBy(['abreviation' => $range['period']]);
+             
+       }
+    //   dd($period);
         $Arret->setPeriode(
-            $this->getEntityManager()->getRepository(Periode::class)->find($range['period'])
+            $period
         );
         
         $this->getEntityManager()->persist($Arret);

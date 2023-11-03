@@ -359,6 +359,6 @@ class __TwigTemplate_ac42d8ae813a03096c9365080ff31892 extends Template
 </script>
     {{ encore_entry_script_tags('salarie_salarie') }}
 {% endblock %}
-", "salarie/gestion_salarie/index.html.twig", "C:\\xampp\\htdocs\\Human-Resources\\templates\\salarie\\gestion_salarie\\index.html.twig");
+", "salarie/gestion_salarie/index.html.twig", "C:\\xampp\\htdocs\\SIRH\\templates\\salarie\\gestion_salarie\\index.html.twig");
     }
 }

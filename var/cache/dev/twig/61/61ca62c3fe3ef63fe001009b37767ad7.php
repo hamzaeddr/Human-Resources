@@ -156,6 +156,6 @@ class __TwigTemplate_21c485b078effa3427f07b7ee4a420a9 extends Template
         </div>
     </div>
 </div>
-", "includes/actions.html.twig", "C:\\xampp\\htdocs\\Human-Resources\\templates\\includes\\actions.html.twig");
+", "includes/actions.html.twig", "C:\\xampp\\htdocs\\SIRH\\templates\\includes\\actions.html.twig");
     }
 }

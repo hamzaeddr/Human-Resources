@@ -75,6 +75,10 @@ class __TwigTemplate_2fd2e3afeca4b30564fa1d0bd5eaae1f extends Template
   font-size: 24px;
   font-weight: bold;
 }
+.inline-elements {
+    display: inline;
+}
+
 </style>
 
 <nav class=\"navbar navbar-top navbar-expand navbar-dashboard navbar-dark ps-0 pe-2 pb-0\">
@@ -84,34 +88,53 @@ class __TwigTemplate_2fd2e3afeca4b30564fa1d0bd5eaae1f extends Template
       <div class=\"d-flex align-items-center navbar-title\">
 
       ";
-        // line 45
+        // line 49
         echo "            <div class=\"navbar-logo block_page\"></div>
 
         <!-- Search form -->
           ";
-        // line 49
+        // line 53
         echo "         
         <!-- / Search form -->
       </div>
       <!-- Navbar links -->
       <ul class=\"navbar-nav align-items-center\">
       
-            <div class=\"navbar-logo\"><h2>";
-        // line 55
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 55, $this->source); })()), "session", [], "any", false, false, false, 55), "get", [0 => "dossier"], "method", false, false, false, 55), "abreviation", [], "any", false, false, false, 55), "html", null, true);
-        echo "</H2></div>
-        
+            ";
+        // line 60
+        echo "        
+       <a href=\"";
+        // line 61
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_site");
+        echo "\" class=\"navbar-logo\" style=\"font-size: 16px;\">
+    <div class=\"inline-elements\">
+       <span>
+            <span class=\"sidebar-icon\">
+            <i class=\"icon icon-xs me-2 fas fa-exchange-alt\"></i>
+                          </span> 
+            <span class=\"sidebar-text\">";
+        // line 67
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 67, $this->source); })()), "session", [], "any", false, false, false, 67), "get", [0 => "dossier"], "method", false, false, false, 67), "abreviation", [], "any", false, false, false, 67), "html", null, true);
+        echo "</span>
+          </span>
+
+    </div>
+</a>
+
+
+
+
         <li class=\"nav-item dropdown ms-lg-3\">
           <a class=\"nav-link dropdown-toggle pt-1 px-0\" href=\"#\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
             <div class=\"media d-flex align-items-center\">
               <img class=\"avatar rounded-circle\" alt=\"Image placeholder\" src=\"";
-        // line 60
+        // line 79
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/images/avatar-1.png"), "html", null, true);
         echo "\">
               <div class=\"media-body ms-2 text-dark align-items-center d-none d-lg-block\">
                 <span class=\"mb-0 font-small fw-bold text-gray-900\">";
-        // line 62
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 62, $this->source); })()), "user", [], "any", false, false, false, 62), "username", [], "any", false, false, false, 62), "html", null, true);
+        // line 81
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 81, $this->source); })()), "user", [], "any", false, false, false, 81), "username", [], "any", false, false, false, 81), "html", null, true);
         echo "</span>
               </div>
             </div>
@@ -124,7 +147,7 @@ class __TwigTemplate_2fd2e3afeca4b30564fa1d0bd5eaae1f extends Template
             
             <div role=\"separator\" class=\"dropdown-divider my-1\"></div>
             <a class=\"dropdown-item d-flex align-items-center\" href=\"";
-        // line 73
+        // line 92
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
         echo "\">
               <svg class=\"dropdown-icon text-danger me-2\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1\"></path></svg>                
@@ -136,7 +159,7 @@ class __TwigTemplate_2fd2e3afeca4b30564fa1d0bd5eaae1f extends Template
     </div>
   </div>
   ";
-        // line 83
+        // line 102
         echo "</nav>
 </br>
 
@@ -199,7 +222,7 @@ class __TwigTemplate_2fd2e3afeca4b30564fa1d0bd5eaae1f extends Template
 
     public function getDebugInfo()
     {
-        return array (  140 => 83,  128 => 73,  114 => 62,  109 => 60,  101 => 55,  93 => 49,  88 => 45,  43 => 1,);
+        return array (  163 => 102,  151 => 92,  137 => 81,  132 => 79,  117 => 67,  108 => 61,  105 => 60,  97 => 53,  92 => 49,  43 => 1,);
     }
 
     public function getSourceContext()
@@ -239,6 +262,10 @@ class __TwigTemplate_2fd2e3afeca4b30564fa1d0bd5eaae1f extends Template
   font-size: 24px;
   font-weight: bold;
 }
+.inline-elements {
+    display: inline;
+}
+
 </style>
 
 <nav class=\"navbar navbar-top navbar-expand navbar-dashboard navbar-dark ps-0 pe-2 pb-0\">
@@ -258,8 +285,23 @@ class __TwigTemplate_2fd2e3afeca4b30564fa1d0bd5eaae1f extends Template
       <!-- Navbar links -->
       <ul class=\"navbar-nav align-items-center\">
       
-            <div class=\"navbar-logo\"><h2>{{app.session.get('dossier').abreviation}}</H2></div>
+            {# <div class=\"navbar-logo\"><h2>{{app.session.get('dossier').abreviation}}</H2></div> #}
         
+       <a href=\"{{ path('app_site') }}\" class=\"navbar-logo\" style=\"font-size: 16px;\">
+    <div class=\"inline-elements\">
+       <span>
+            <span class=\"sidebar-icon\">
+            <i class=\"icon icon-xs me-2 fas fa-exchange-alt\"></i>
+                          </span> 
+            <span class=\"sidebar-text\">{{ app.session.get('dossier').abreviation }}</span>
+          </span>
+
+    </div>
+</a>
+
+
+
+
         <li class=\"nav-item dropdown ms-lg-3\">
           <a class=\"nav-link dropdown-toggle pt-1 px-0\" href=\"#\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
             <div class=\"media d-flex align-items-center\">
@@ -327,6 +369,6 @@ class __TwigTemplate_2fd2e3afeca4b30564fa1d0bd5eaae1f extends Template
             </div>
         </div>
     </div>
-</div>", "includes/navbar.html.twig", "C:\\xampp\\htdocs\\Human-Resources\\templates\\includes\\navbar.html.twig");
+</div>", "includes/navbar.html.twig", "C:\\xampp\\htdocs\\SIRH\\templates\\includes\\navbar.html.twig");
     }
 }
