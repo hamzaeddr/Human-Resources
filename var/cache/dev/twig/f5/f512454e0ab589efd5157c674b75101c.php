@@ -76,7 +76,7 @@ class __TwigTemplate_a35370fd0ffc47ea422bf1f05ee7882e extends Template
           class=\"nav-link  collapsed  d-flex justify-content-between align-items-center\"
           data-bs-toggle=\"collapse\" data-bs-target=\"#";
             // line 21
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["module"], "module", [], "any", false, false, false, 21), "designation", [], "any", false, false, false, 21), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["module"], "module", [], "any", false, false, false, 21), "prefix", [], "any", false, false, false, 21), "html", null, true);
             echo "\" ";
             if (((isset($context["getCurrentUrl"]) || array_key_exists("getCurrentUrl", $context) ? $context["getCurrentUrl"] : (function () { throw new RuntimeError('Variable "getCurrentUrl" does not exist.', 21, $this->source); })()) == twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["module"], "module", [], "any", false, false, false, 21), "prefix", [], "any", false, false, false, 21))) {
                 echo " aria-expanded=\"true\" ";
@@ -108,7 +108,7 @@ class __TwigTemplate_a35370fd0ffc47ea422bf1f05ee7882e extends Template
             echo " \" role=\"list\"
           id=\"";
             // line 34
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["module"], "module", [], "any", false, false, false, 34), "designation", [], "any", false, false, false, 34), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["module"], "module", [], "any", false, false, false, 34), "prefix", [], "any", false, false, false, 34), "html", null, true);
             echo "\" aria-expanded=\"false\">
           <ul class=\"flex-column nav\">
             ";
@@ -197,7 +197,7 @@ class __TwigTemplate_a35370fd0ffc47ea422bf1f05ee7882e extends Template
       <li class=\"nav-item {% if getCurrentUrl == module.module.prefix %} active {% endif %}\">
         <span
           class=\"nav-link  collapsed  d-flex justify-content-between align-items-center\"
-          data-bs-toggle=\"collapse\" data-bs-target=\"#{{module.module.designation}}\" {% if getCurrentUrl == module.module.prefix %} aria-expanded=\"true\" {% endif %}>
+          data-bs-toggle=\"collapse\" data-bs-target=\"#{{module.module.prefix}}\" {% if getCurrentUrl == module.module.prefix %} aria-expanded=\"true\" {% endif %}>
           <span>
             <span class=\"sidebar-icon\">
               <i class=\"icon icon-xs me-2 {{module.module.icon}}\"></i>
@@ -210,7 +210,7 @@ class __TwigTemplate_a35370fd0ffc47ea422bf1f05ee7882e extends Template
           </span>
         </span>
         <div class=\"multi-level collapse {% if getCurrentUrl == module.module.prefix %} show {% endif %} \" role=\"list\"
-          id=\"{{module.module.designation}}\" aria-expanded=\"false\">
+          id=\"{{module.module.prefix}}\" aria-expanded=\"false\">
           <ul class=\"flex-column nav\">
             {% for sousModule in module.sousModule %}
             <li class=\"nav-item  {% if getCurrentUrl == module.module.prefix and secondCurrentUrl == sousModule.prefix %} activeSecondUrl {% endif %}\">
@@ -227,6 +227,6 @@ class __TwigTemplate_a35370fd0ffc47ea422bf1f05ee7882e extends Template
       
     </ul>
   </div>
-</nav>", "includes/sidebar.html.twig", "C:\\xampp\\htdocs\\Human-Resources\\templates\\includes\\sidebar.html.twig");
+</nav>", "includes/sidebar.html.twig", "C:\\xampp\\htdocs\\SIRH\\templates\\includes\\sidebar.html.twig");
     }
 }

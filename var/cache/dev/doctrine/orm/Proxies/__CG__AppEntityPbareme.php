@@ -67,10 +67,10 @@ class Pbareme extends \App\Entity\Pbareme implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'niveau_id', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'bareme', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'Designation', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'netapayer', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'PbaremeBrutes', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'Profil', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'Poste', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'Experience', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'Groupe', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'Salaire_brute', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'anc_Profil1', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'anc_Profil2', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'nature_cab_id', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'nature_sal_id', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'contracts', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'baremeCimrs'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'niveau_id', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'bareme', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'designation', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'netapayer', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'PbaremeBrutes', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'Profil', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'Poste', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'Experience', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'Groupe', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'Salaire_brute', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'anc_Profil1', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'anc_Profil2', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'nature_cab_id', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'nature_sal_id', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'contracts', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'baremeCimrs'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'niveau_id', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'bareme', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'Designation', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'netapayer', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'PbaremeBrutes', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'Profil', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'Poste', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'Experience', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'Groupe', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'Salaire_brute', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'anc_Profil1', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'anc_Profil2', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'nature_cab_id', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'nature_sal_id', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'contracts', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'baremeCimrs'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'niveau_id', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'bareme', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'designation', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'netapayer', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'PbaremeBrutes', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'Profil', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'Poste', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'Experience', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'Groupe', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'Salaire_brute', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'anc_Profil1', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'anc_Profil2', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'nature_cab_id', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'nature_sal_id', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'contracts', '' . "\0" . 'App\\Entity\\Pbareme' . "\0" . 'baremeCimrs'];
     }
 
     /**
@@ -250,12 +250,12 @@ class Pbareme extends \App\Entity\Pbareme implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setDesignation(string $Designation): \App\Entity\Pbareme
+    public function setDesignation(string $designation): \App\Entity\Pbareme
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDesignation', [$Designation]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDesignation', [$designation]);
 
-        return parent::setDesignation($Designation);
+        return parent::setDesignation($designation);
     }
 
     /**

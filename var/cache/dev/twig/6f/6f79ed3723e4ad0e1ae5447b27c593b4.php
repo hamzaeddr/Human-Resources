@@ -248,6 +248,6 @@ class __TwigTemplate_28b14b57148f84ef4f5df1750dd48096 extends Template
             </div>
         </div>
     </div>
-</div>", "salarie/gestion_salarie/modals/modifier.html.twig", "C:\\xampp\\htdocs\\Human-Resources\\templates\\salarie\\gestion_salarie\\modals\\modifier.html.twig");
+</div>", "salarie/gestion_salarie/modals/modifier.html.twig", "C:\\xampp\\htdocs\\SIRH\\templates\\salarie\\gestion_salarie\\modals\\modifier.html.twig");
     }
 }

@@ -1,4 +1,14 @@
+<style>
+/* Style the delete button */
+/* Style the delete icon */
+.delete-icon {
+    cursor: pointer;
+    color: #d9534f; /* Customize the color */
+    font-size: 20px; /* Customize the size */
+}
 
+
+</style>
 
 
 
@@ -12,6 +22,8 @@
             </div>
             <div class="modal-body overflow-auto">
                 <form id="add_pret">
+
+                     
                     <div class="row mt-2">
                         
                         <div class="col-md-4">
@@ -35,7 +47,7 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label required class="text-size-12">ID Employe:</label>
+                            <label required class="text-size-12">ID Contract:</label>
                             <input type="text" class="form-control" id="id_emp_arret" name="id_emp_arret" disabled/>
                         </div>
                         
@@ -59,10 +71,38 @@
                         
                         
                     </div>
-                <hr>               
+                <hr>      
+              <div class="row mt-2">
+                        <div id="loading-spinner" style="display: none;" style="width: 1.5rem;height: 1.5rem;">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+            </div>
+              <table id="editable-table"  class="table table-striped table-bordered" style="width:100%">
+    <!-- Header row -->
+                <thead>
+                    <tr>
+                        <th>Date Debut </th>
+                        <th>Date Fin </th>
+                        <th>Nomber de jours </th>
+                        <th>Periode </th>
+                        <th hidden>Periode </th>
+                        <th >delete </th>
+                        <!-- Add more columns as needed -->
+                    </tr>
+                </thead>
+                <!-- Data rows will be loaded dynamically with JavaScript -->
+                <tbody></tbody>
+            </table>
+                </br>
+                <hr>      
+
+                </div>
+                         
 
                     {# <div class="row mt-2"> #}
-                <button type="submit" class="btn btn-secondary add_arret" form="add_arret">Enregistre</button>
+                <button type="submit" class="btn btn-secondary add_arret_btn" form="add_arret_btn">Verifier</button>
+                <button type="submit" class="btn btn-success add_arret" style="float:right;" form="add_arret">Enregistre</button>
                         
                       
                         {# <div class="col-md-4">
@@ -79,7 +119,16 @@
                 </br>   
                 </br>               
 
-               <div class="col-md-7 text-end" style="border: 1px solid #ccc; padding: 10px; border-radius: 5px;text-align: left !important;">
+               <div class="col-md-9 text-end" style="border: 1px solid #ccc; padding: 10px; border-radius: 5px;text-align: left !important;">
+                 {# <div class="row mt-2">
+                        <div class="col-md-4"> #}
+                            <label required class="text-size-12">Periode *:</label>
+                            <input type="month" name="periode" class="periode periode_arrt" id="periode_arrt" style="margin-right: 10px;" value="" min="{{date}}"/>
+                        {# </div> #}
+{#}
+                        
+                    </div>
+                <hr>    #}
                     <span style="font-size: 16px; ">Import : </span>
                     <input type="file" id="upload_file_arret" style="display: none;"/>
                     <button class="btn btn-success upload_file_button" style="margin-right: 10px;"><i class="fa fa-upload text-white"></i></button>
@@ -113,7 +162,7 @@
             </div>
             <div class="modal-footer justify-content-start" >
                 {# <button type="submit" class="btn btn-secondary add_arret" form="add_arret">Enregistre</button> #}
-                <a type="button" class="btn btn-link" data-bs-dismiss="modal"  data-dismiss="modal">Fermer</a>
+                <a type="button" class="btn btn-link arrt_close" data-bs-dismiss="modal"  data-dismiss="modal">Fermer</a>
             </div>
         </div>
     </div>

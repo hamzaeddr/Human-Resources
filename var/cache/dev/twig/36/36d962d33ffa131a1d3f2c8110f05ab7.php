@@ -76,7 +76,7 @@ class __TwigTemplate_51ff5c0091177168abddb4c6e0b4688f extends Template
         // line 47
         echo "    <div class=\"col-md-4 mb-2\">
         <label for=\"situation_familiale\">Situation familiale (*)</label>
-        <select class=\"select\" name=\"situation_familiale\" required>
+        <select class=\"select situation_familiale\" name=\"situation_familiale\"  required>
             <option value=\"\" selected>Choix situation familiale</option>
             ";
         // line 51
@@ -108,7 +108,7 @@ class __TwigTemplate_51ff5c0091177168abddb4c6e0b4688f extends Template
         <input type=\"text\" name=\"adresse_1\" id=\"adresse_1\" class=\"form-control\" required>
     </div>
     <div class=\"col-md-4 mb-2\">
-        <label for=\"adresse_2\">Adresse 2 (*)</label>
+        <label for=\"adresse_2\">Adresse 2 </label>
         <input type=\"text\" name=\"adresse_2\" id=\"adresse_2\" class=\"form-control\">
     </div>
     <div class=\"col-md-4 mb-2\">
@@ -116,7 +116,7 @@ class __TwigTemplate_51ff5c0091177168abddb4c6e0b4688f extends Template
         <input type=\"text\" name=\"nationalite\" id=\"nationalite\" class=\"form-control\" required>
     </div>
     <div class=\"col-md-4 mb-2\">
-        <label for=\"code_postal\">Code postal (*)</label>
+        <label for=\"code_postal\">Code postal </label>
         <input type=\"text\" name=\"code_postal\" id=\"code_postal\" class=\"form-control\">
     </div>
     <div class=\"col-md-4 mb-2\">
@@ -132,11 +132,11 @@ class __TwigTemplate_51ff5c0091177168abddb4c6e0b4688f extends Template
         <input type=\"number\" name=\"telephone_1\" id=\"telephone_1\" class=\"form-control\" required>
     </div>
     <div class=\"col-md-4 mb-2\">
-        <label for=\"telephone_2\">Téléphone 2 (*)</label>
+        <label for=\"telephone_2\">Téléphone 2 </label>
         <input type=\"number\" name=\"telephone_2\" id=\"telephone_2\" class=\"form-control\" >
     </div>
     <div class=\"col-md-4 mb-2\">
-        <label for=\"email\">Email (*)</label>
+        <label for=\"email\">Email</label>
         <input type=\"text\" name=\"email\" id=\"email\" class=\"form-control\" >
     </div>
     
@@ -148,8 +148,8 @@ class __TwigTemplate_51ff5c0091177168abddb4c6e0b4688f extends Template
                 <label for=\"nv_diplome\"><h2>Diplome :</h2></label>
             <div class=\"col-md-2 mb-2\">
                 <label >Niveau (*)</label>
-                <select name=\"nv_diplome\"  class=\"select\" >
-                    <option value=\"\" selected>Choix Niveau</option>
+                <select name=\"nv_diplome\"   class=\"select new_dip\" >
+                    <option value=\"\" >Choix Niveau</option>
                         <option value=\"\"></option>
                         <option value=\"niv_bac\">niveau bac</option>
                         <option value=\"bac\"  >bac</option>
@@ -294,7 +294,7 @@ class __TwigTemplate_51ff5c0091177168abddb4c6e0b4688f extends Template
     </div> #}
     <div class=\"col-md-4 mb-2\">
         <label for=\"situation_familiale\">Situation familiale (*)</label>
-        <select class=\"select\" name=\"situation_familiale\" required>
+        <select class=\"select situation_familiale\" name=\"situation_familiale\"  required>
             <option value=\"\" selected>Choix situation familiale</option>
             {% for situationFamiliale in situationFamiliales %}
                 <option value=\"{{situationFamiliale.id}}\">{{situationFamiliale.designation}}</option>
@@ -312,7 +312,7 @@ class __TwigTemplate_51ff5c0091177168abddb4c6e0b4688f extends Template
         <input type=\"text\" name=\"adresse_1\" id=\"adresse_1\" class=\"form-control\" required>
     </div>
     <div class=\"col-md-4 mb-2\">
-        <label for=\"adresse_2\">Adresse 2 (*)</label>
+        <label for=\"adresse_2\">Adresse 2 </label>
         <input type=\"text\" name=\"adresse_2\" id=\"adresse_2\" class=\"form-control\">
     </div>
     <div class=\"col-md-4 mb-2\">
@@ -320,7 +320,7 @@ class __TwigTemplate_51ff5c0091177168abddb4c6e0b4688f extends Template
         <input type=\"text\" name=\"nationalite\" id=\"nationalite\" class=\"form-control\" required>
     </div>
     <div class=\"col-md-4 mb-2\">
-        <label for=\"code_postal\">Code postal (*)</label>
+        <label for=\"code_postal\">Code postal </label>
         <input type=\"text\" name=\"code_postal\" id=\"code_postal\" class=\"form-control\">
     </div>
     <div class=\"col-md-4 mb-2\">
@@ -336,11 +336,11 @@ class __TwigTemplate_51ff5c0091177168abddb4c6e0b4688f extends Template
         <input type=\"number\" name=\"telephone_1\" id=\"telephone_1\" class=\"form-control\" required>
     </div>
     <div class=\"col-md-4 mb-2\">
-        <label for=\"telephone_2\">Téléphone 2 (*)</label>
+        <label for=\"telephone_2\">Téléphone 2 </label>
         <input type=\"number\" name=\"telephone_2\" id=\"telephone_2\" class=\"form-control\" >
     </div>
     <div class=\"col-md-4 mb-2\">
-        <label for=\"email\">Email (*)</label>
+        <label for=\"email\">Email</label>
         <input type=\"text\" name=\"email\" id=\"email\" class=\"form-control\" >
     </div>
     
@@ -352,8 +352,8 @@ class __TwigTemplate_51ff5c0091177168abddb4c6e0b4688f extends Template
                 <label for=\"nv_diplome\"><h2>Diplome :</h2></label>
             <div class=\"col-md-2 mb-2\">
                 <label >Niveau (*)</label>
-                <select name=\"nv_diplome\"  class=\"select\" >
-                    <option value=\"\" selected>Choix Niveau</option>
+                <select name=\"nv_diplome\"   class=\"select new_dip\" >
+                    <option value=\"\" >Choix Niveau</option>
                         <option value=\"\"></option>
                         <option value=\"niv_bac\">niveau bac</option>
                         <option value=\"bac\"  >bac</option>
@@ -424,6 +424,6 @@ class __TwigTemplate_51ff5c0091177168abddb4c6e0b4688f extends Template
  <hr>
 
  <button type=\"submit\" class=\"btn btn-secondary\" style=\"float:right;\" form=\"new_salarie\">Suivant</button>
-", "salarie/gestion_salarie/pages/etat_civil.html.twig", "C:\\xampp\\htdocs\\Human-Resources\\templates\\salarie\\gestion_salarie\\pages\\etat_civil.html.twig");
+", "salarie/gestion_salarie/pages/etat_civil.html.twig", "C:\\xampp\\htdocs\\SIRH\\templates\\salarie\\gestion_salarie\\pages\\etat_civil.html.twig");
     }
 }

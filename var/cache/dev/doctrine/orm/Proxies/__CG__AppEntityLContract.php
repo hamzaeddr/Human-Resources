@@ -67,10 +67,10 @@ class LContract extends \App\Entity\LContract implements \Doctrine\ORM\Proxy\Pro
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'id', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'employe', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'code', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'date_debut', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'date_fin', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'active', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'date_sortie', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'motif_sortie', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'dateAnciennete', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'pnatureContract', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'lcontractFonctions', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'ldossierContracts', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'lmatriculationCotis', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'lribs', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'lmatriculationcotis', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'elementFixes', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'dossier', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'bareme', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'arretTravails', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'elementEcheances', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'priseEnCharge', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'prelevements', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'bulletins', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'problemes', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'fonction', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'Salairegrille', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'Salaireaffecte'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'id', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'employe', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'code', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'date_debut', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'date_fin', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'active', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'date_sortie', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'motif_sortie', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'dateAnciennete', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'pnatureContract', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'lcontractFonctions', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'ldossierContracts', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'lmatriculationCotis', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'lribs', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'lmatriculationcotis', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'elementFixes', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'dossier', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'bareme', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'arretTravails', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'elementEcheances', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'priseEnCharge', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'prelevements', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'bulletins', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'problemes', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'fonction', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'Salairegrille', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'Salaireaffecte', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'tCnssA02s', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'tCnssB02s', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'tCnssB04s', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'piece', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'PPC', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'RPC'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'id', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'employe', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'code', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'date_debut', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'date_fin', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'active', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'date_sortie', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'motif_sortie', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'dateAnciennete', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'pnatureContract', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'lcontractFonctions', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'ldossierContracts', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'lmatriculationCotis', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'lribs', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'lmatriculationcotis', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'elementFixes', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'dossier', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'bareme', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'arretTravails', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'elementEcheances', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'priseEnCharge', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'prelevements', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'bulletins', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'problemes', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'fonction', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'Salairegrille', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'Salaireaffecte'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'id', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'employe', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'code', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'date_debut', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'date_fin', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'active', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'date_sortie', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'motif_sortie', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'dateAnciennete', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'pnatureContract', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'lcontractFonctions', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'ldossierContracts', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'lmatriculationCotis', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'lribs', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'lmatriculationcotis', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'elementFixes', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'dossier', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'bareme', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'arretTravails', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'elementEcheances', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'priseEnCharge', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'prelevements', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'bulletins', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'problemes', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'fonction', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'Salairegrille', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'Salaireaffecte', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'tCnssA02s', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'tCnssB02s', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'tCnssB04s', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'piece', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'PPC', '' . "\0" . 'App\\Entity\\LContract' . "\0" . 'RPC'];
     }
 
     /**
@@ -861,6 +861,105 @@ class LContract extends \App\Entity\LContract implements \Doctrine\ORM\Proxy\Pro
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSalaireaffecte', [$Salaireaffecte]);
 
         return parent::setSalaireaffecte($Salaireaffecte);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTCnssA02s(): \Doctrine\Common\Collections\Collection
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTCnssA02s', []);
+
+        return parent::getTCnssA02s();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPiece(): ?\App\Entity\PPiece
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPiece', []);
+
+        return parent::getPiece();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPiece(?\App\Entity\PPiece $piece): static
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPiece', [$piece]);
+
+        return parent::setPiece($piece);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPPC(): ?float
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPPC', []);
+
+        return parent::getPPC();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPPC(?float $PPC): static
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPPC', [$PPC]);
+
+        return parent::setPPC($PPC);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTCnssB02s(): \Doctrine\Common\Collections\Collection
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTCnssB02s', []);
+
+        return parent::getTCnssB02s();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTCnssB04s(): \Doctrine\Common\Collections\Collection
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTCnssB04s', []);
+
+        return parent::getTCnssB04s();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getRPC(): ?float
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getRPC', []);
+
+        return parent::getRPC();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setRPC(?float $RPC): static
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setRPC', [$RPC]);
+
+        return parent::setRPC($RPC);
     }
 
 }

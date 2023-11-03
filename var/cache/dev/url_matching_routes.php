@@ -17,6 +17,11 @@ return [
         '/redirect' => [[['_route' => 'app_redirect', '_controller' => 'App\\Controller\\HomeController::redirectsite'], null, null, null, false, false, null]],
         '/mouvement/arret' => [[['_route' => 'app_mouvement_arret', '_controller' => 'App\\Controller\\Mouvement\\ArretController::index'], null, null, null, true, false, null]],
         '/mouvement/arret/arret_traitement' => [[['_route' => 'app_mouvement_arret_traitement', '_controller' => 'App\\Controller\\Mouvement\\ArretController::arret_traitement'], null, null, null, false, false, null]],
+        '/mouvement/arret/arret_traitement_verification' => [[['_route' => 'arret_traitement_verification', '_controller' => 'App\\Controller\\Mouvement\\ArretController::arret_traitement_verification'], null, null, null, false, false, null]],
+        '/mouvement/arret/arret_canvas' => [[['_route' => 'app_mouvement_arret_mass_canvas', '_controller' => 'App\\Controller\\Mouvement\\ArretController::epreuveCanvas'], null, null, null, false, false, null]],
+        '/mouvement/arret/arret_canvas_motif' => [[['_route' => 'app_mouvement_arret_mass_canvas_motif', '_controller' => 'App\\Controller\\Mouvement\\ArretController::epreuveCanvas_motif'], null, null, null, false, false, null]],
+        '/mouvement/arret/upload_arret' => [[['_route' => 'app_mouvement_arret_mass_upload', '_controller' => 'App\\Controller\\Mouvement\\ArretController::app_mouvement_arret_mass_upload'], null, null, null, false, false, null]],
+        '/mouvement/arret/parret_aff' => [[['_route' => 'app_parret_aff', '_controller' => 'App\\Controller\\Mouvement\\ArretController::app_parret_aff'], null, null, null, false, false, null]],
         '/mouvement/echeance' => [[['_route' => 'app_mouvement_echeance', '_controller' => 'App\\Controller\\Mouvement\\EcheanceController::index'], null, null, null, true, false, null]],
         '/mouvement/echeance/app_mouvement_echeance_insert' => [[['_route' => 'app_mouvement_echeance_insert', '_controller' => 'App\\Controller\\Mouvement\\EcheanceController::app_mouvement_echeance_insert'], null, null, null, false, false, null]],
         '/mouvement/echeance/app_mouvement_echeance_list' => [[['_route' => 'app_mouvement_echeance_list', '_controller' => 'App\\Controller\\Mouvement\\EcheanceController::app_mouvement_echeance_list'], null, null, null, false, false, null]],
@@ -41,6 +46,8 @@ return [
         '/parametre/user/app_parametre_user_list' => [[['_route' => 'app_parametre_user_list', '_controller' => 'App\\Controller\\Parametre\\UserController::app_parametre_user_list'], null, null, null, false, false, null]],
         '/parametre/user/app_parametre_user_activer' => [[['_route' => 'app_parametre_user_activer', '_controller' => 'App\\Controller\\Parametre\\UserController::app_parametre_user_activer'], null, null, null, false, false, null]],
         '/parametre/user/app_parametre_user_desactiver' => [[['_route' => 'app_parametre_user_desactiver', '_controller' => 'App\\Controller\\Parametre\\UserController::app_parametre_user_desactiver'], null, null, null, false, false, null]],
+        '/reporting/cnss' => [[['_route' => 'app_reporting_cnss', '_controller' => 'App\\Controller\\Reporting\\CnssController::index'], null, null, null, true, false, null]],
+        '/reporting/cnss/app_reporting_cnss_import' => [[['_route' => 'app_reporting_cnss_import', '_controller' => 'App\\Controller\\Reporting\\CnssController::app_reporting_cnss_import'], null, null, null, false, false, null]],
         '/salarie/salarie' => [[['_route' => 'app_salarie_salarie', '_controller' => 'App\\Controller\\Salarie\\GestionSalarieController::index'], null, null, null, true, false, null]],
         '/salarie/salarie/app_salarie_salarie_list' => [[['_route' => 'app_salarie_salarie_list', '_controller' => 'App\\Controller\\Salarie\\GestionSalarieController::app_salarie_salarie_list'], null, null, null, false, false, null]],
         '/salarie/salarie/salarienoactive' => [[['_route' => 'app_salarie_salarie_noactive', '_controller' => 'App\\Controller\\Salarie\\GestionSalarieController::salarienoactive'], null, null, null, false, false, null]],
@@ -53,6 +60,8 @@ return [
         '/salarie/salarie/updatecontract' => [[['_route' => 'app_salarie_updatecontract', '_controller' => 'App\\Controller\\Salarie\\GestionSalarieController::updatecontract'], null, null, null, false, false, null]],
         '/salarie/salarie/getmatricule' => [[['_route' => 'app_salarie_get_cnss_cimr', '_controller' => 'App\\Controller\\Salarie\\GestionSalarieController::getmatricule'], null, null, null, false, false, null]],
         '/salarie/salarie/updatecotis' => [[['_route' => 'app_salarie_updatecotis', '_controller' => 'App\\Controller\\Salarie\\GestionSalarieController::updatecotis'], null, null, null, false, false, null]],
+        '/salarie/salarienoactiver' => [[['_route' => 'app_salarie_salarienoactiver', '_controller' => 'App\\Controller\\Salarie\\SalarienoactiverController::index'], null, null, null, true, false, null]],
+        '/salarie/salarienoactiver/app_salarienoactive_list' => [[['_route' => 'app_salarienoactive_list', '_controller' => 'App\\Controller\\Salarie\\SalarienoactiverController::app_salarie_salarie_list'], null, null, null, false, false, null]],
         '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\Security\\RegistrationController::register'], null, null, null, false, false, null]],
         '/new' => [[['_route' => 'app_register_new', '_controller' => 'App\\Controller\\Security\\RegistrationController::new'], null, null, null, false, false, null]],
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\Security\\SecurityController::login'], null, null, null, false, false, null]],
@@ -83,34 +92,38 @@ return [
                 .')'
                 .'|/api/api_get(?'
                     .'|naturesalarietype/([^/]++)(*:210)'
-                    .'|bareme/([^/]++)/([^/]++)(*:242)'
-                    .'|dureecontrat/([^/]++)(*:271)'
+                    .'|bareme(?'
+                        .'|/([^/]++)/([^/]++)(*:245)'
+                        .'|_contract/([^/]++)/([^/]++)(*:280)'
+                    .')'
+                    .'|dureecontrat/([^/]++)(*:310)'
                 .')'
                 .'|/mouvement/(?'
-                    .'|echeance/app_mouvement_echeance_get_base/([^/]++)(*:343)'
-                    .'|fixe/app_mouvement_fixe_statut/([^/]++)/([^/]++)(*:399)'
-                    .'|prets/app_mouvement_prets_detail/([^/]++)(*:448)'
+                    .'|arret/parret_aff_details/([^/]++)(*:366)'
+                    .'|echeance/app_mouvement_echeance_get_base/([^/]++)(*:423)'
+                    .'|fixe/app_mouvement_fixe_statut/([^/]++)/([^/]++)(*:479)'
+                    .'|prets/app_mouvement_prets_detail/([^/]++)(*:528)'
                 .')'
                 .'|/pa(?'
                     .'|ie/(?'
                         .'|bulletin/(?'
                             .'|app_bulletin_employe_(?'
-                                .'|list/([^/]++)(*:518)'
-                                .'|problemes/([^/]++)(*:544)'
-                                .'|bulletin_details/([^/]++)(*:577)'
+                                .'|list/([^/]++)(*:598)'
+                                .'|problemes/([^/]++)(*:624)'
+                                .'|bulletin_details/([^/]++)(*:657)'
                             .')'
-                            .'|print/([^/]++)(*:600)'
+                            .'|print/([^/]++)(*:680)'
                         .')'
-                        .'|honoraire/app_paie_honoraire_import/([^/]++)/([^/]++)/([^/]++)(*:671)'
+                        .'|honoraire/app_paie_honoraire_import/([^/]++)/([^/]++)/([^/]++)(*:751)'
                     .')'
                     .'|rametre/user/(?'
                         .'|app_parametre_user_(?'
-                            .'|operation/([^/]++)/([^/]++)/([^/]++)/([^/]++)(*:763)'
-                            .'|sousmodule/([^/]++)/([^/]++)/([^/]++)/([^/]++)(*:817)'
-                            .'|module/([^/]++)/([^/]++)/([^/]++)/([^/]++)(*:867)'
-                            .'|all/([^/]++)/([^/]++)/([^/]++)(*:905)'
+                            .'|operation/([^/]++)/([^/]++)/([^/]++)/([^/]++)(*:843)'
+                            .'|sousmodule/([^/]++)/([^/]++)/([^/]++)/([^/]++)(*:897)'
+                            .'|module/([^/]++)/([^/]++)/([^/]++)/([^/]++)(*:947)'
+                            .'|all/([^/]++)/([^/]++)/([^/]++)(*:985)'
                         .')'
-                        .'|getoperations/([^/]++)/([^/]++)(*:945)'
+                        .'|getoperations/([^/]++)/([^/]++)(*:1025)'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -124,21 +137,23 @@ return [
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         210 => [[['_route' => 'api_getnaturesalarietype', '_controller' => 'App\\Controller\\ApiController::api_getnaturesalarietype'], ['natureCab'], null, null, false, true, null]],
-        242 => [[['_route' => 'api_getbareme', '_controller' => 'App\\Controller\\ApiController::api_getbaremeprofile'], ['niveau', 'natureCab'], null, null, false, true, null]],
-        271 => [[['_route' => 'api_getdureecontrat', '_controller' => 'App\\Controller\\ApiController::api_getdureecontrat'], ['natureContrat'], null, null, false, true, null]],
-        343 => [[['_route' => 'app_mouvement_echeance_get_base', '_controller' => 'App\\Controller\\Mouvement\\EcheanceController::app_mouvement_echeance_get_base'], ['bareme'], null, null, false, true, null]],
-        399 => [[['_route' => 'app_mouvement_fixe_statut', '_controller' => 'App\\Controller\\Mouvement\\ElementfixeController::app_mouvement_fixe_statut'], ['element', 'statut'], null, null, false, true, null]],
-        448 => [[['_route' => 'app_mouvement_prets_detail', '_controller' => 'App\\Controller\\Mouvement\\PretsController::app_mouvement_prets_detail'], ['prelevement'], null, null, false, true, null]],
-        518 => [[['_route' => 'app_bulletin_employe_list', '_controller' => 'App\\Controller\\Paie\\BulletinController::app_bulletin_employe_list'], ['periode'], null, null, false, true, null]],
-        544 => [[['_route' => 'app_bulletin_employe_problemes', '_controller' => 'App\\Controller\\Paie\\BulletinController::app_bulletin_employe_problemes'], ['contract'], null, null, false, true, null]],
-        577 => [[['_route' => 'app_bulletin_employe_bulletin_details', '_controller' => 'App\\Controller\\Paie\\BulletinController::app_bulletin_employe_bulletin_details'], ['code'], null, null, false, true, null]],
-        600 => [[['_route' => 'app_bulletin_employe_bulletin_print', '_controller' => 'App\\Controller\\Paie\\BulletinController::app_bulletin_employe_bulletin_print'], ['bulletin'], null, null, false, true, null]],
-        671 => [[['_route' => 'app_paie_honoraire_import', '_controller' => 'App\\Controller\\Paie\\HonoraireController::app_paie_honoraire_import'], ['paiement', 'nature', 'dossier'], null, null, false, true, null]],
-        763 => [[['_route' => 'app_parametre_user_operation', '_controller' => 'App\\Controller\\Parametre\\UserController::app_parametre_user_operation'], ['operation', 'userId', 'dossierId', 'type'], null, null, false, true, null]],
-        817 => [[['_route' => 'app_parametre_user_sousmodule', '_controller' => 'App\\Controller\\Parametre\\UserController::app_parametre_user_sousmodule'], ['sous_module', 'userId', 'dossierId', 'type'], null, null, false, true, null]],
-        867 => [[['_route' => 'app_parametre_user_module', '_controller' => 'App\\Controller\\Parametre\\UserController::app_parametre_user_module'], ['module', 'userId', 'dossierId', 'type'], null, null, false, true, null]],
-        905 => [[['_route' => 'app_parametre_user_all', '_controller' => 'App\\Controller\\Parametre\\UserController::app_parametre_user_all'], ['userId', 'dossierId', 'type'], null, null, false, true, null]],
-        945 => [
+        245 => [[['_route' => 'api_getbareme', '_controller' => 'App\\Controller\\ApiController::api_getbaremeprofile'], ['niveau', 'natureCab'], null, null, false, true, null]],
+        280 => [[['_route' => 'api_getbareme_contract', '_controller' => 'App\\Controller\\ApiController::api_getbareme_contract'], ['natureContrat', 'profil'], null, null, false, true, null]],
+        310 => [[['_route' => 'api_getdureecontrat', '_controller' => 'App\\Controller\\ApiController::api_getdureecontrat'], ['natureContrat'], null, null, false, true, null]],
+        366 => [[['_route' => 'app_parret_aff_details', '_controller' => 'App\\Controller\\Mouvement\\ArretController::app_parret_aff_details'], ['code'], null, null, false, true, null]],
+        423 => [[['_route' => 'app_mouvement_echeance_get_base', '_controller' => 'App\\Controller\\Mouvement\\EcheanceController::app_mouvement_echeance_get_base'], ['bareme'], null, null, false, true, null]],
+        479 => [[['_route' => 'app_mouvement_fixe_statut', '_controller' => 'App\\Controller\\Mouvement\\ElementfixeController::app_mouvement_fixe_statut'], ['element', 'statut'], null, null, false, true, null]],
+        528 => [[['_route' => 'app_mouvement_prets_detail', '_controller' => 'App\\Controller\\Mouvement\\PretsController::app_mouvement_prets_detail'], ['prelevement'], null, null, false, true, null]],
+        598 => [[['_route' => 'app_bulletin_employe_list', '_controller' => 'App\\Controller\\Paie\\BulletinController::app_bulletin_employe_list'], ['periode'], null, null, false, true, null]],
+        624 => [[['_route' => 'app_bulletin_employe_problemes', '_controller' => 'App\\Controller\\Paie\\BulletinController::app_bulletin_employe_problemes'], ['contract'], null, null, false, true, null]],
+        657 => [[['_route' => 'app_bulletin_employe_bulletin_details', '_controller' => 'App\\Controller\\Paie\\BulletinController::app_bulletin_employe_bulletin_details'], ['code'], null, null, false, true, null]],
+        680 => [[['_route' => 'app_bulletin_employe_bulletin_print', '_controller' => 'App\\Controller\\Paie\\BulletinController::app_bulletin_employe_bulletin_print'], ['bulletin'], null, null, false, true, null]],
+        751 => [[['_route' => 'app_paie_honoraire_import', '_controller' => 'App\\Controller\\Paie\\HonoraireController::app_paie_honoraire_import'], ['paiement', 'nature', 'dossier'], null, null, false, true, null]],
+        843 => [[['_route' => 'app_parametre_user_operation', '_controller' => 'App\\Controller\\Parametre\\UserController::app_parametre_user_operation'], ['operation', 'userId', 'dossierId', 'type'], null, null, false, true, null]],
+        897 => [[['_route' => 'app_parametre_user_sousmodule', '_controller' => 'App\\Controller\\Parametre\\UserController::app_parametre_user_sousmodule'], ['sous_module', 'userId', 'dossierId', 'type'], null, null, false, true, null]],
+        947 => [[['_route' => 'app_parametre_user_module', '_controller' => 'App\\Controller\\Parametre\\UserController::app_parametre_user_module'], ['module', 'userId', 'dossierId', 'type'], null, null, false, true, null]],
+        985 => [[['_route' => 'app_parametre_user_all', '_controller' => 'App\\Controller\\Parametre\\UserController::app_parametre_user_all'], ['userId', 'dossierId', 'type'], null, null, false, true, null]],
+        1025 => [
             [['_route' => 'app_parametre_user_operations', '_controller' => 'App\\Controller\\Parametre\\UserController::operations'], ['user', 'dossier'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

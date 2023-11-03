@@ -1,8 +1,110 @@
 $(document).ready(function  () {
     var employeId = 0;
+    var $table = '';
+    table();
+
 // $("#ajouter_modal").modal('show');
 // $('#parret_datatable').DataTable();
 var previousXhr = null;
+
+function removeAllRows() {
+    var table = $('#editable-table').DataTable();
+    table.clear().draw();
+    
+}
+
+
+
+function populateTable(data) {
+    // Get a reference to the DataTable
+    var $table = $('#editable-table').DataTable();
+
+    // Clear the existing data from the DataTable
+    $table.clear().draw();
+
+    // Loop through the data and create rows
+    data.forEach(function (row) {
+        var $row = $('<tr>');
+        $row.append('<td contenteditable="true">' + row.start + '</td>');
+        $row.append('<td contenteditable="true">' + row.end + '</td>');
+        $row.append('<td contenteditable="true">' + row.days + '</td>');
+        $row.append('<td contenteditable="true">' + row.period_my + '</td>');
+        $row.append('<td contenteditable="true" hidden>' + row.period + '</td>');
+        $row.append('<td><i class="fas fa-trash delete-icon"></i></td>');
+        // Add more columns as needed
+
+        $table.row.add($row).draw(false); // Add a row and redraw without sorting
+    });
+
+    // If you have additional DataTable options, set them here
+    $table.page('first').draw('page');
+    $table.search('').columns().search('').draw();
+}
+
+
+$('#editable-table tbody ').on('click', '.delete-icon', function () {
+
+    
+    var row = $('#editable-table').DataTable().row($(this).parents('tr'));
+    row.remove().draw();
+});
+
+$('.add_arret_btn').on('click', function () {
+    var editedData = [];
+    var id_cnt = $('#id_emp_arret').val();
+    var motif =  $('.motif_id').val();
+    var datedebut =  $('#datedebut').val();
+    var datefin =  $('.datefin').val();
+    var datereprise =  $('.datereprise').val();
+  
+    $('#editable-table tbody tr').each(function () {
+        var $row = $(this);
+        var column1 = $row.find('td:eq(0)').text();
+        var column2 = $row.find('td:eq(1)').text();
+        var column3 = $row.find('td:eq(2)').text();
+        var column4 = $row.find('td:eq(3)').text();
+        // Get other columns if necessary
+
+        editedData.push({
+            start: column1,
+            end: column2,
+            days: column3,
+            period: column4,
+          
+        });
+    });
+
+    $.ajax({
+        type: 'POST',
+        url: Routing.generate('arret_traitement_verification'),
+        data: { editedData: editedData,
+            'id_emp_arret':id_cnt,
+            'motif_id':motif,
+            'datedebut':datedebut,
+            'datefin':datefin,
+            'datereprise':datereprise, },
+        success: function (response) {
+            
+            // Handle the response from the final processing
+            removeAllRows();
+
+            // }
+            // $table.DataTable().destroy();
+            $("#ajouter_modal").modal('hide');
+            table();
+},
+        error: function () {
+            // Handle errors and hide the spinner in case of failure
+            notyf.error('Merci de vérifier le nombre de jours de cet employé pour résoudre le problème !!');
+        }
+    });
+});
+function table() {
+
+    if ($.fn.DataTable.isDataTable('#parret_datatable')) {
+        $('#parret_datatable').DataTable().destroy();
+    }
+
 var table =  $('#parret_datatable').DataTable({
             
     order: [[0, "desc"]],
@@ -84,6 +186,7 @@ var table =  $('#parret_datatable').DataTable({
     ],
     language: datatablesFrench,
 });
+}
 
 $(document).on('change', '.employe_arret',  function() {
 
@@ -101,6 +204,7 @@ $(document).on('change', '.employe_arret',  function() {
 });
 
 $(document).on('change', '#upload_file_arret',  function() {
+    var period_arrt = $('#periode_arrt').val();
     Swal.fire({
         title: 'Vous voulez vraiment importer ce fichier excel ?',
         showCancelButton: true,
@@ -119,11 +223,14 @@ $(document).on('change', '#upload_file_arret',  function() {
           
             const formData = new FormData();
             formData.append("file", $("#upload_file_arret").prop("files")[0])
+            formData.append("period", period_arrt)
             try{
                 const request = await axios.post(Routing.generate("app_mouvement_arret_mass_upload"), formData);
                 $("#upload_file_arret").val(null);
+                $("#ajouter_modal").modal('hide');
                
                 notyf.dismissAll();
+                table();
 
             }catch(error){
                 console.log(error, error.response);
@@ -166,6 +273,7 @@ $(document).on('click', '.add_arret',  function() {
                   
                },
                success: function(data){
+                populateTable(data);
                 //  hide_show('#modal_modifier #plus_info_update','#modal_modifier #plus_info_update','civicivil','#modal_modifier #etatcivil_update');
               
                 $("body .btnclose").click();
@@ -187,6 +295,7 @@ $(document).on('click', '.add_arret',  function() {
 $(document).on('click', '#ajouter',  function() {
 
     $("#ajouter_modal").modal('show');
+
 
 });
 
