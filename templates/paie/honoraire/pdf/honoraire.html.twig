@@ -1,0 +1,291 @@
+{# {% extends 'base.html.twig' %} #}
+
+{# {% block title %} HONORAIRES {% endblock %} #}
+{% block stylesheets %}
+<style>
+ body{
+        font-family: 'Courier New';
+                color: #352f44;
+
+    }
+    .titre-reb{
+        width: 100%;
+        background: #1f4f7a;
+        font-size: 9px ;
+        padding:3px 10px;
+        color: #f1f1f1;
+        font-weight: bold
+    }
+    div.zone_over
+    {
+        display: block;
+        width: 40%;
+        word-wrap:break-word !important;
+    }
+     
+  body {
+    font-family: Courier, sans-serif;
+    font-size:11px;
+  }
+
+    @page {  
+    header: html_otherpageheader;
+    footer: html_otherpagesfooter;
+    }
+
+    @page :first {    
+        header: html_firstpageheader;
+        footer: html_firstpagefooter;
+    }
+
+    div.chapter2 {
+        page-break-before: right;
+        page: chapter2;
+    }
+    div.noheader {
+        page-break-before: right;
+        page: noheader;
+    }
+    body{
+        font-family: 'Courier New';
+    }
+    .titre-reb{
+        width: 100%;
+        background: #1f4f7a;
+        font-size: 9px ;
+        padding:3px 10px;
+        color: #f1f1f1;
+        font-weight: bold
+    }
+    div.zone_over
+    {
+        display: block;
+        width: 40%;
+        
+        word-wrap:break-word !important;
+    }
+
+   
+
+  body {
+    font-family: 'Courier New';
+    font-size:12px;
+  }
+
+  table {
+  font-family: 'Courier New';
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  
+  padding: 4px;
+}
+
+.myTable tr:nth-child(even) {
+    background-color: #d6dce4;
+}
+b{ font-weight: bold; }
+
+</style>
+{% endblock %}
+
+{% block body %}
+
+        <htmlpageheader name="firstpageheader" style="display:none">
+       
+                <div style="text-align: center;" >
+                    
+                    <span style=" font-size: 15px; margin-bottom:5px !important;"><b>HONORAIRE</b></span><br>
+                    <span style=" font-size: 10px;margin-bottom:5px !important; padding:50px"><b>CENTER FCZ</b></span><br>
+                    <span style=" font-size: 10px; margin-bottom:5px !important;"><b>fetchobs</b></span>
+                
+              
+                {# <td style="width: 30%; text-align: center;" font-size="60px">
+                    DIRECTION DES RESSOURCES HUMAINES
+                </td> #}
+            
+        <table style="width: 100%;" text-align="center" cellspacing="0" >
+            
+            <tr>
+               
+                <td style="width: 80%; " >
+                    <table style="" text-align="center" cellspacing="0">
+                        <tr>
+               
+                            <td style=" font-weight: bold; font-size: 10px;" >
+                            ID HONORAIRE
+                            </td>
+                           <td style="font-size: 10px;" >
+                              {# :{{fetch.RefBordereaux}} #}
+                           </td>
+                           <td style="font-size: 10px;" >
+                    
+                           </td>
+                           <td style="font-size: 10px;" >
+                    
+                           </td>
+                        </tr>
+                        <tr>
+               
+                            <td style="font-weight: bold; font-size: 10px; " >
+                            DATE HONORAIRE
+                            </td>
+                           <td style="font-size: 10px;" >
+                            {# :{{fetch.DateSys|date('d/m/Y')}} #}
+                           </td>
+                           <td style="font-size: 10px;" >
+                    
+                           </td>
+                           <td style="font-size: 10px;" >
+                    
+                           </td>
+                        </tr>
+                        <tr>
+               
+                            <td style="font-weight: bold; font-size: 10px;" >
+                            MODE PAIEMENT
+                            </td>
+                           <td style="font-size: 10px;" >
+                             {# :{{fetch.Paiement}} #}
+                           </td>
+                           <td style="font-weight: bold; font-size: 10px;" >
+                           DEVISE 
+                           </td>
+                           <td style="font-size: 10px;" >
+                            {# :{{fetch.devis}} #}
+                           </td>
+                        </tr>
+                        <tr>
+               
+                            <td style=" font-weight: bold;font-size: 10px;" >
+                            TOTAL HONORAIRE
+                            </td>
+                           <td style="font-size: 10px;" >
+                           {# :{{mt}}  {{fetch.devis}} #}
+                           </td>
+                           <td style="font-size: 10px;" >
+                    
+                           </td>
+                           <td style="font-size: 10px;" >
+                    
+                           </td>
+                        </tr>
+                     </table>
+                </td>
+                <td style="width: 20%; " >
+                    
+                </td>
+            </tr>
+
+        </table>
+      
+        <table>
+        <tr style="background-color: #222a35;"  >
+                <th style="text-align: center;width: 5%;color: white; bold">ORD</th>
+                <th style="text-align: center;width: 10%;color: white; bold">id RH</th>
+                <th style=" text-align: center;width: 20%;color: white; bold">NOM</th>
+                <th style="; text-align: center;width: 20%;color: white; bold">PRENOM</th>
+                {# <th style=" text-align: center;width: 30%;color: white; bold">{% if fetch.Paiement == 'Virement' %}RIB{% else %}CIN{% endif %}</th> #}
+                <th style=" text-align: center;width: 15%;color: white; bold">Brut</th>
+                <th style=" text-align: center;width: 15%;color: white; bold">IR</th>
+                <th style=" text-align: center;width: 15%;color: white; bold">MONTANT</th>
+             </tr>
+        </table>
+        
+
+    </htmlpageheader>
+      <htmlpageheader name="otherpageheader" style="">
+      <div style="margin:128px !important;">
+      <br>
+      </div>
+      <table>
+        <tr style="background-color: #222a35;"  >
+                <th style=" text-align: center;width: 5%;color: white; bold">ORD</th>
+                <th style=" text-align: center;width: 10%;color: white; bold">id RH</th>
+                <th style=" text-align: center;width: 20%;color: white; bold">NOM</th>
+                <th style=" text-align: center;width: 20%;color: white; bold">PRENOM</th>
+                {# <th style=" text-align: center;width: 30%;color: white; bold">{% if fetch.Paiement == 'Virement' %}RIB{% else %}CIN{% endif %}</th> #}
+                <th style=" text-align: center;width: 15%;color: white; bold">Brut</th>
+                <th style=" text-align: center;width: 15%;color: white; bold">IR</th>
+                <th style=" text-align: center;width: 15%;color: white; bold">MONTANT</th>
+             </tr>
+        </table>
+    </htmlpageheader>
+   
+    <htmlpagefooter name="firstpagefooter" style="">
+ 
+          <hr/>
+        <table style="width:100%;">
+          <tr>
+             <td align="left"  style="width:50%;">Direction des Ressources Humaines</td>
+             {# <td align="right"  style="width:50%;">Page {PAGENO} sur {nbpg}</td> #}
+          </tr>
+        </table>
+               
+
+        
+
+    </htmlpagefooter>
+    <htmlpagefooter name="otherpagesfooter" style="">
+ 
+          <hr/>
+        
+                    
+        <table style="width:100%;">
+          <tr>
+             <td align="left"  style="width:50%;">Direction des Ressources Humaines</td>
+             {# <td align="right"  style="width:50%;">Page {PAGENO} sur {nbpg}</td> #}
+          </tr>
+        </table>
+             
+     
+        
+
+    </htmlpagefooter>
+
+ 
+<page backtop="10mm" backbottom="10mm"> 
+
+
+
+<table class="myTable">
+            {# {% set i = 0 %}
+                  {% for e in fetch_details %}
+                   {% set i = i + 1 %}
+            <tr style=""  >
+                <td style="text-align: center;width: 5%; ">{{i}}</td>
+                <td style="text-align: center;width: 10%;  ">{{e.ID_Employer}}</td>
+                <td style="text-align: center;width: 20%;  ">{{e.Nom}}</td>
+                <td style="text-align: center;width: 20%;  ">{{e.Prenom}}</td>
+                <td style="text-align: center;width: 30%;   ">{% if fetch.Paiement == 'Virement' %}{{e.RIB}}{% else %}{{e.CIN}}{% endif %}</td> 
+                    {% for mt in e.mt %}
+                         <td style="text-align: center;width: 15%;text-align: RIGHT;">{{mt | number_format(2, ',', ' ')}}</td>
+                    {% endfor %}
+                {# <td style="text-align: center;width: 15%;  ">test</td>
+                <td style="text-align: center;width: 15%;  ">tt</td> #}
+            {# </tr> #}
+            {# {% endfor %} #} 
+            </tr>
+</table>
+
+<div style="padding=15px; margin-top:5px;"> 
+<table>
+{# <tr style="height: 50px;">
+        <td style="border: 0px solid #dddddd; text-align: LEFT;width: 20%; height: 15px;"> </td>
+        <td style="border: 0px solid #dddddd; text-align: LEFT;width: 20%; height: 15px;"> </td>
+        <td style="border: 0px solid #dddddd; text-align: LEFT;width: 20%; height: 15px;"> </td>
+        <td style="border: 0px solid #dddddd; text-align: LEFT;width: 20%; height: 15px;"> </td>
+        <td style="border: 0px solid #dddddd; text-align: LEFT;width: 20%; height: 15px;"><p style=" font-size:15px;color:#222a35; " ><b>TOTAL :</b></p></td>
+        <td style="border: 0px solid #dddddd; text-align: RIGHT;width: 20%; height: 15px;background-color: #222a35;"><p style="text-align: right; padding-right:15px; margin-bottom:30px; margin-right: 10px; color: white; bold " ><b>{{brut}}</b></p> </td>
+        <td style="border: 0px solid #dddddd; text-align: RIGHT;width: 20%; height: 15px;background-color: #222a35;"><p style="text-align: right; padding-right:15px; margin-bottom:30px; margin-right: 10px; color: white; bold " ><b>{{ir}}</b></p></td>
+        <td style="border: 0px solid #dddddd; text-align: RIGHT;width: 20%; height: 15px;background-color: #222a35;"><p style="text-align: right; padding-right:15px; margin-bottom:30px; margin-right: 10px; color: white; bold " ><b>{{mt}} </b></p> </td>
+        {# <td style="border: 0px solid #dddddd; text-align: center;width: 30%; height: 15px; "><p style=" font-size:15px;color:#222a35; " ><b>TOTAL :</b></p></td>
+        <td style="border: 0px solid #dddddd;text-align: right;width: 30%; height: 15px;background-color: #222a35;"><p style="text-align: right; padding-right:15px; margin-bottom:30px; margin-right: 10px; color: white; bold " ><b>{{mt}} {{fetch.devis}}</b></p></td> #}
+{# </tr>  #}
+</table>
+</div>
+</page>
+</div>
+{% endblock %}

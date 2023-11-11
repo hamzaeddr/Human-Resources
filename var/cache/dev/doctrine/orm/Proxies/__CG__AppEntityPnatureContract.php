@@ -67,10 +67,10 @@ class PnatureContract extends \App\Entity\PnatureContract implements \Doctrine\O
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'id', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'code', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'designation', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'active', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'Abreviation', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'pdureeContracts', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'contract_id', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'type', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'bordereau', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'compteComptables', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'partenaireId'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'id', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'code', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'designation', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'active', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'Abreviation', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'pdureeContracts', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'contract_id', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'bordereau', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'compteComptables', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'partenaireId', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'type'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'id', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'code', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'designation', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'active', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'Abreviation', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'pdureeContracts', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'contract_id', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'type', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'bordereau', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'compteComptables', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'partenaireId'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'id', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'code', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'designation', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'active', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'Abreviation', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'pdureeContracts', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'contract_id', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'bordereau', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'compteComptables', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'partenaireId', '' . "\0" . 'App\\Entity\\PnatureContract' . "\0" . 'type'];
     }
 
     /**
@@ -371,28 +371,6 @@ class PnatureContract extends \App\Entity\PnatureContract implements \Doctrine\O
     /**
      * {@inheritDoc}
      */
-    public function getType(): ?string
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getType', []);
-
-        return parent::getType();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setType(?string $type): \App\Entity\PnatureContract
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setType', [$type]);
-
-        return parent::setType($type);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getBordereau(): \Doctrine\Common\Collections\Collection
     {
 
@@ -476,6 +454,28 @@ class PnatureContract extends \App\Entity\PnatureContract implements \Doctrine\O
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPartenaireId', [$partenaireId]);
 
         return parent::setPartenaireId($partenaireId);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getType(): ?\App\Entity\PtypeContract
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getType', []);
+
+        return parent::getType();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setType(?\App\Entity\PtypeContract $type): static
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setType', [$type]);
+
+        return parent::setType($type);
     }
 
 }

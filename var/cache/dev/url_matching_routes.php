@@ -37,6 +37,7 @@ return [
         '/paie/honoraire' => [[['_route' => 'app_paie_honoraire', '_controller' => 'App\\Controller\\Paie\\HonoraireController::index'], null, null, null, true, false, null]],
         '/paie/honoraire/app_paie_honoraire_insert' => [[['_route' => 'app_paie_honoraire_insert', '_controller' => 'App\\Controller\\Paie\\HonoraireController::app_paie_honoraire_insert'], null, null, null, false, false, null]],
         '/paie/honoraire/app_paie_honoraire_list' => [[['_route' => 'app_paie_honoraire_list', '_controller' => 'App\\Controller\\Paie\\HonoraireController::app_paie_honoraire_list'], null, null, null, false, false, null]],
+        '/paie/honoraire/pdf_honoraire' => [[['_route' => 'app_paie_honoraire_pdf', '_controller' => 'App\\Controller\\Paie\\HonoraireController::pdf_honoraire'], null, null, null, false, false, null]],
         '/paie/indeminite' => [[['_route' => 'app_paie_indeminite', '_controller' => 'App\\Controller\\Paie\\IndeminiteController::index'], null, null, null, true, false, null]],
         '/paie/indeminite/app_paie_indeminite_add_rib' => [[['_route' => 'app_paie_indeminite_add_rib', '_controller' => 'App\\Controller\\Paie\\IndeminiteController::app_paie_indeminite_add_rib'], null, null, null, false, false, null]],
         '/paie/indeminite/app_paie_indeminite_import' => [[['_route' => 'app_paie_indeminite_import', '_controller' => 'App\\Controller\\Paie\\IndeminiteController::app_paie_indeminite_import'], null, null, null, false, false, null]],

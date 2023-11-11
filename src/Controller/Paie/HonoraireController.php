@@ -3,6 +3,7 @@
 namespace App\Controller\Paie;
 
 use App\Entity\Lrib;
+use App\Entity\PPiece;
 use App\Entity\PDevise;
 use App\Entity\PDossier;
 use App\Entity\Pemploye;
@@ -14,7 +15,6 @@ use App\Entity\PBordereau;
 use App\Entity\TbulletinLg;
 use App\Entity\PnatureContract;
 use App\Controller\ApiController;
-use App\Entity\PPiece;
 use App\Service\CalculPaieService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,6 +24,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx as Reader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
+use Mpdf\Mpdf;
+
 
 #[Route('/paie/honoraire')]
 
@@ -80,7 +82,9 @@ class HonoraireController extends AbstractController
         $count = 0;
         foreach ($spreadSheetArys as $key => $sheet) {
             $sheet[10];
-            $natureContract = $this->em->getRepository(PnatureContract::class)->findOneBy(['type' => $nature, 'designation' => $sheet[10]]);
+            // $natureContract = $this->em->getRepository(PnatureContract::class)->findOneBy(['type' => $nature, 'designation' => $sheet[10]]);
+            $natureContract = $this->em->getRepository(PnatureContract::class)->findOneBy(['designation' => $sheet[10]]);
+            // dd($natureContract);
             if(!$natureContract){
                 return new JsonResponse('Nature introuvable on ligne '.($key + 1).' !', 500);
             }
@@ -99,9 +103,11 @@ class HonoraireController extends AbstractController
                 $this->em->persist($employe);
             }
 
+            // dd($natureContract);
             // $rib = $this->em->getRepository(Lrib::class)->findOneBy(['designation' => $sheet[3], 'active' => true]);
             $newContract = false;
             $contract = $this->em->getRepository(LContract::class)->findOneBy(['employe' => $employe, 'pnatureContract' => $natureContract, 'dossier' => $dossier]);
+            // dd($contract);
             if(!$contract) {
                 $newContract = true;
                 $contract = new LContract();
@@ -115,9 +121,10 @@ class HonoraireController extends AbstractController
                     $rib = new Lrib();
                     $rib->setDesignation($sheet[3]);
                     $rib->setContactId($contract);
+                    $this->em->persist($rib);
+
                 }
                 
-                $this->em->persist($rib);
             } else {
                 $rib = $this->em->getRepository(Lrib::class)->findOneBy(['contact_id' => $contract, 'active' => true]);
                 if(!$rib and $paiement->getDesignation() == "virement") {
@@ -317,4 +324,51 @@ class HonoraireController extends AbstractController
             'data' => $results,
         ]);
     }
+
+
+/////////////////////////// Etét de sortie ///////////////////////////////////////////////////
+
+
+#[Route('/pdf_honoraire', name: 'app_paie_honoraire_pdf', options: ['expose' => true])]
+public function pdf_honoraire(Request $request): Response
+{
+
+    // $queryBuilder = $this->em->createQueryBuilder()
+    // ->select('b.id, periode.code as code_periode, b.created as created,b.observation, b.code, p.designation as paiement, d.designation as dossier')
+    // ->from(PBordereau::class, 'b')
+    // ->innerJoin('b.paiement', 'p')
+    // ->innerJoin('b.dossier', 'd')
+    // ->innerJoin('b.periode', 'periode')
+    // ->where('b.type = :type')
+    // ->andWhere('b.active = 1')
+    // ->andWhere('d = :dossier')
+    // ->setParameter('type', 'honoraire')
+    // ->setParameter('dossier', $dossier);
+
+    // $results = $queryBuilder->getQuery()->getResult();
+
+    // $html = $this->render("paie/honoraire/pdf/honoraire.html.twig", [
+    $html = $this->render("paie/bulletin/pdf/bulletin.html.twig", [
+      
+    ])->getContent();
+
+    $mpdf = new Mpdf([
+        'mode' => 'utf-8',
+        'margin_left' => '5',
+        'margin_right' => '5',
+        ]);
+    $mpdf->SetTitle('Honoraire');
+    // $mpdf->SetHTMLFooter(
+    //     $this->render("planification/pdfs/footer.html.twig")->getContent()
+    // );
+    $mpdf->WriteHTML($html);
+    $mpdf->Output("Honoraire", "I");
+}
+
+
+// }
+
+
+
+
 }

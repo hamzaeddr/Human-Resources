@@ -18,6 +18,7 @@ class FosRouting {
         locale: '',
         prettyPrint: false,
         domain: [],
+        php: 'php',
     };
 
     constructor(options = {}) {
@@ -62,16 +63,21 @@ class FosRouting {
                 }
                 return pass;
             }, []);
-            await execFile('bin/console', ['fos:js-routing:dump', ...args]);
-            const content = await readFile(this.options.target);
-            await rmFile(this.options.target);
-            if (!prevContent || content.compare(prevContent) !== 0) {
-                await makeDir(path.dirname(this.finalTarget), {recursive: true});
-                await writeFile(this.finalTarget, content);
-                prevContent = content;
-                if (comp.modifiedFiles && !comp.modifiedFiles.has(this.finalTarget)) {
-                    comp.modifiedFiles.add(this.finalTarget);
+            await execFile(this.options.php, ['bin/console', 'fos:js-routing:dump', ...args]);
+            try {
+                const content = await readFile(this.options.target);
+                await rmFile(this.options.target);
+                if (!prevContent || content.compare(prevContent) !== 0) {
+                    await makeDir(path.dirname(this.finalTarget), {recursive: true});
+                    await writeFile(this.finalTarget, content);
+                    prevContent = content;
+                    if (comp.modifiedFiles && !comp.modifiedFiles.has(this.finalTarget)) {
+                        comp.modifiedFiles.add(this.finalTarget);
+                    }
                 }
+            } catch (e) {
+                const logger = compiler.getInfrastructureLogger('FosRouting');
+                logger.error(e.toString());
             }
             callback();
         };
@@ -86,7 +92,7 @@ class FosRouting {
 
         new InjectPlugin(() => {
             return 'import Routing from "fos-router";' +
-                'import routes from "' + this.finalTarget + '";' +
+                'import routes from '+JSON.stringify(this.finalTarget)+';' +
                 'Routing.setRoutingData(routes);';
         }).apply(compiler);
     }

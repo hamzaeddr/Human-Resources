@@ -44,6 +44,7 @@ class GestionSalarieController extends AbstractController
         $fonctions = $this->em->getRepository(Pfonction::class)->findAll();     
         $pemployes = $this->em->getRepository(Pemploye::class)->findAll();
         $naturecontract = $this->em->getRepository(PnatureContract::class)->findAll();
+        // dd($naturecontract);:
         $pbaremes = $this->em->getRepository(Pbareme::class)->findAll();
 
         $contract = $this->em->getRepository(LContract::class)->findBy(['active'=> 1]);
@@ -194,14 +195,18 @@ class GestionSalarieController extends AbstractController
 
         $employe = $request->get('employe_id');
         $queryBuilder = $this->em->createQueryBuilder()
-        ->select('contract.id as id, contract.code, p.nom as nom, p.matricule as matricule , p.prenom,n.type,n.Abreviation,n.designation')
+        // n.designation')
+        ->select('contract.id as id, contract.code, p.nom as nom, p.matricule as matricule , p.prenom,n.Abreviation,t.designation as type,n.designation')
+        // ->select('contract.id as id, contract.code, p.nom as nom, p.matricule as matricule , p.prenom, n.type')
         ->from(LContract::class, 'contract')
         ->innerJoin('contract.employe', 'p')
         ->innerJoin('contract.pnatureContract', 'n')
+        ->innerJoin('n.type', 't')
         ->Where('contract.active = 1')
         ->andWhere('contract.employe = :employe')
         ->setParameter('employe', $employe);
         $results = $queryBuilder->getQuery()->getResult();
+        // dd($results);
         $data =  $this->render('salarie/gestion_salarie/modals/contract_detail.html.twig', [
             'contracts' => $results,'operations' => $operations
         ])->getContent();

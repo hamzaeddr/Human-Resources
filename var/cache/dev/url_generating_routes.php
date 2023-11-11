@@ -52,6 +52,7 @@ return [
     'app_paie_honoraire_import' => [['paiement', 'nature', 'dossier'], ['_controller' => 'App\\Controller\\Paie\\HonoraireController::app_paie_honoraire_import'], [], [['variable', '/', '[^/]++', 'dossier', true], ['variable', '/', '[^/]++', 'nature', true], ['variable', '/', '[^/]++', 'paiement', true], ['text', '/paie/honoraire/app_paie_honoraire_import']], [], [], []],
     'app_paie_honoraire_insert' => [[], ['_controller' => 'App\\Controller\\Paie\\HonoraireController::app_paie_honoraire_insert'], [], [['text', '/paie/honoraire/app_paie_honoraire_insert']], [], [], []],
     'app_paie_honoraire_list' => [[], ['_controller' => 'App\\Controller\\Paie\\HonoraireController::app_paie_honoraire_list'], [], [['text', '/paie/honoraire/app_paie_honoraire_list']], [], [], []],
+    'app_paie_honoraire_pdf' => [[], ['_controller' => 'App\\Controller\\Paie\\HonoraireController::pdf_honoraire'], [], [['text', '/paie/honoraire/pdf_honoraire']], [], [], []],
     'app_paie_indeminite' => [[], ['_controller' => 'App\\Controller\\Paie\\IndeminiteController::index'], [], [['text', '/paie/indeminite/']], [], [], []],
     'app_paie_indeminite_add_rib' => [[], ['_controller' => 'App\\Controller\\Paie\\IndeminiteController::app_paie_indeminite_add_rib'], [], [['text', '/paie/indeminite/app_paie_indeminite_add_rib']], [], [], []],
     'app_paie_indeminite_import' => [[], ['_controller' => 'App\\Controller\\Paie\\IndeminiteController::app_paie_indeminite_import'], [], [['text', '/paie/indeminite/app_paie_indeminite_import']], [], [], []],

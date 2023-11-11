@@ -4,7 +4,7 @@
         <select class="select nature_contrat nature_contrat" name="nature_contrat"   required >
           <option value="" selected>Choix Nature Contract</option>
             {% for contract in naturecontract %}
-                <option id="{{contract.id}}"  value="{{contract.id}}" data-attr ="{{contract.type}}">{{contract.designation}}</option>
+                <option id="{{contract.id}}"  value="{{contract.id}}" data-attr ="{{contract.type.designation}}">{{contract.designation}}</option>
             {% endfor %}
                 
         </select>

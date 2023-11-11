@@ -198,7 +198,7 @@ $(document).ready(function  () {
             }
             const createCancelTokenHandler = createCancel();
             var profil = $(this).val();
-            
+            // alert(selectedDataAttr);
         
                 
                 const request2 = await axios.get(

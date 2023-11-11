@@ -56,7 +56,7 @@ class __TwigTemplate_3766246a0c8e8708107532b5dba63911 extends Template
             echo "\"  value=\"";
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["contract"], "id", [], "any", false, false, false, 7), "html", null, true);
             echo "\" data-attr =\"";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["contract"], "type", [], "any", false, false, false, 7), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["contract"], "type", [], "any", false, false, false, 7), "designation", [], "any", false, false, false, 7), "html", null, true);
             echo "\">";
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["contract"], "designation", [], "any", false, false, false, 7), "html", null, true);
             echo "</option>
@@ -225,7 +225,7 @@ class __TwigTemplate_3766246a0c8e8708107532b5dba63911 extends Template
         <select class=\"select nature_contrat nature_contrat\" name=\"nature_contrat\"   required >
           <option value=\"\" selected>Choix Nature Contract</option>
             {% for contract in naturecontract %}
-                <option id=\"{{contract.id}}\"  value=\"{{contract.id}}\" data-attr =\"{{contract.type}}\">{{contract.designation}}</option>
+                <option id=\"{{contract.id}}\"  value=\"{{contract.id}}\" data-attr =\"{{contract.type.designation}}\">{{contract.designation}}</option>
             {% endfor %}
                 
         </select>

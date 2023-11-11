@@ -1,0 +1,324 @@
+{# {% extends 'BasePDF.html.twig' %} #}
+
+{# {% block title %} Bulletin {% endblock %} #}
+
+{% block stylesheets %}
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 10px;
+            margin: 1rem 0;
+        }
+
+        /* Header styles */
+        .tr-child td:nth-child(1),
+        .tr-child td:nth-child(2) {
+            font-weight: bold;
+        }
+
+        .tr-child td:nth-child(3) {
+            color: #3d3d3d;
+        }
+
+        tr.spaceUnder > td {
+            padding-top: 1.5rem;
+        }
+
+        .bold {
+            font-weight: bold;
+            margin: 0 1rem;
+        }
+
+        .donnes {
+            font-size: 10px;
+        }
+
+        .donnes__heading {
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            margin-bottom: 1rem;
+            {# margin-top: 600px !important; #}
+        }
+
+        .donnes__tables,
+        .donnes__tables-primary,
+        .donnes__tables-secondary {
+            width: 100%;
+        }
+
+        .donnes__tables-primary {
+            width: 55%;
+            display: block;
+            background-color: #f7f2f2;
+            margin-right: 1rem;
+        }
+
+        .donnes__tables-primary table tr td,
+        .donnes__tables-secondary table tr td {
+            padding-right: 1rem;
+        }
+
+        /* Data styles */
+        .border-top {
+            border: 1px solid #555454;
+        }
+
+        .border-left {
+            border-top: 1px solid #535353;
+            border-bottom: 1px solid #5e5d5d;
+        }
+
+        .border-bottom {
+            border-bottom: 1px solid #5e5d5d;
+        }
+
+        .black {
+            background-color: black;
+            color: white;
+        }
+
+        .gris,
+        .gris_1 {
+            background-color: #979696;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .data {
+            margin: 3rem 0;
+        }
+
+        .data__table-1 table td {
+            color: #2e2e2e;
+        }
+
+        .data__table-1 table td:nth-child(2) {
+            border-collapse: collapse;
+        }
+
+        .data__table-1 table tr td:last-child() {
+            border-bottom: 1px solid #4d4c4c;
+        }
+
+        .br,
+        .bl,
+        .brdb,
+        .brdt,
+        .brdl,
+        .brdr,
+        .bgris_1,
+        .bgris_2 {
+            border: 1px solid #4d4c4c;
+        }
+
+        .table_2 {
+            border-spacing: 0px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .table_2 td {
+            padding: 6px 3px 6px 3px;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        @page {
+            header: myHeader1;
+        }
+    </style>
+{% endblock %}
+
+
+{% block body %}
+    {# {% for e in fetch %} #}
+        <htmlpageheader name="myHeader1" style="">
+            {% set logoPath = {
+                'G_FCZO': 'Logos/FCZ_LG.png',
+                'U_UIAS': 'Logos/LogoUIASS.png',
+                'PR_RGA': 'Logos/Logo_Afric_MedVF.png',
+                'CAS_SST': 'Logos/SST.png',
+                'CAS_SSS': 'Logos/SSS.png',
+                'S_LDMR': 'Logos/LDM.png',
+                'S_HMKH': 'Logos/LOGO1_HMK.png',
+                'S_UICR': 'Logos/LOGO_HCZ.png',
+                'S_HMBG': 'Logos/Logo_HMB.png',
+                'S_HMYO': 'Logos/Logo_HMY.png'
+            } %}
+
+            {% if logoPath['G_FCZO'] is defined %}
+                <table style="width: 100%;" text-align="center" cellspacing="0">
+                    <tr>
+                        <td style="width: 100%; text-align: {{ 'G_FCZO' in ['G_FCZO', 'CAS_SST', 'CAS_SSS', 'S_LDMR', 'S_UICR'] ? 'right' : 'left' }};">
+                            <br/><br/>
+                            <img style="margin-{{ 'G_FCZO' in ['G_FCZO', 'U_UIAS', 'S_HMBG', 'S_HMYO'] ? 'right' : 'left' }}: 4px; height:
+                             {{ 'G_FCZO' in ['S_HMKH', 'S_UICR'] ? '80px' : '2.8cm' }}; width: {{ 'G_FCZO' in ['S_HMKH', 'S_UICR'] ? '6cm' : '5.5cm' }};" src="{{ logoPath['G_FCZO'] }}">
+                        </td>
+                    </tr>
+                </table>
+            {% endif %}
+        </htmlpageheader>
+
+    {# {% endfor %} #}
+
+    <htmlpagefooter name="myFooter1" style="display:none;">
+         <table width="100%">
+            <tr>
+                <td width="33%">
+                    <span style="font-weight: bold; font-style: italic;">{'2022-09-10' j-m-Y}</span>
+                </td>
+                <td width="33%" align="center" style="font-weight: bold; font-style: italic;">
+                    {# {PAGENO}/{nbpg} #}
+                </td>
+                <td width="33%" style="text-align: right;">
+                    My document
+                </td>
+            </tr>
+        </table>
+    </htmlpagefooter>
+<div>
+
+
+
+</div>
+    <section class='donnes'>
+        {# {% for item in fetch %} #}
+            {# <h1 class='donnes__heading'>BULLETIN DE PAIE</h1> #}
+                   <h1 class='donnes__heading'>BULLETIN DE PAIE</h1>
+        <div class='donnes__tables'>
+            <table>
+            <tr>
+                
+            <td style='background-color: #EBEBEB; width: 60%;'>
+                <div class='donnes__tables-primary'>
+                <table>
+                    <tr>
+                        <td >
+                            <table>
+                            <tr class='tr-child'>
+                                <td height='30px'>REF. BULLETIN</td>
+                                <td height='30px'>:</td>
+                                <td height='30px'>:</td>
+                                {# <td height='30px'>{{item.ID_Bulletin}}</td> #}
+                            </tr>
+                            <tr class='tr-child spaceUnder'>
+                                <td height='30px'>ID SALARIE</td>
+                                <td height='40px'>:</td>
+                                <td height='40px'>:</td>
+                                {# <td height='30px'>{{item.ID_Employer}}</td> #}
+                            </tr>
+                            <tr class='tr-child spaceUnder'>
+                                <td height='30px'>RECRUTE LE</td>
+                                <td height='30px'>:</td>
+                                <td height='30px'>:</td>
+                                {# <td height='30px'>{{ item.Date_Contrat|slice(0, 10) }}</td> #}
+                            </tr>
+                            <tr class='tr-child spaceUnder'>
+                                <td height='30px'>SITUATION FAM.</td>
+                                <td height='30px'>:</td>
+                                <td height='30px'>:</td>
+                                {# <td height='30px'>{{item.Situation_Fam}}</td> #}
+                            </tr>
+                            <tr class='tr-child spaceUnder'>
+                                <td height='30px'>CIN</td>
+                                <td height='30px'>:</td>
+                                <td height='30px'>:</td>
+                                {# <td height='30px'>{{item.CIN}}</td> #}
+                            </tr>
+                            </table>
+                        </td>
+
+                        <td>
+                            <table>
+                            <tr class='tr-vide '>
+                                <td colspan='3'  height='35px'> </td>
+                            </tr>
+                            <tr class='tr-child spaceUnder'>
+                                <td height='30px'>SALARIE</td>
+                                <td height='30px'>:</td>
+                                <td height='30px'>:</td>
+                                {# <td height='30px'>{{item.Nom}}  {{item.Prénom}}</td> #}
+                            </tr>
+                            <tr class='tr-child spaceUnder'> 
+                                <td height='30px'>NATURE</td>
+                                <td height='30px'>:</td>
+                                <td height='30px'>:</td>
+                                {# <td height='30px'>{{item.Nature_Type}}</td> #}
+                            </tr>
+                            <tr class='tr-child spaceUnder'>
+                                <td height='30px'>ENFANT(S)</td>
+                                <td height='30px'>:</td>
+                                <td height='30px'>:</td>
+                                {# <td height='30px'>{{item.Enfants}}</td> #}
+                            </tr>
+                            <tr class='tr-child spaceUnder'>
+                                <td height='30px'>PROFILE</td>
+                                <td height='30px'>:</td>
+                                <td height='30px'>:</td>
+                                {# <td height='30px'>{{item.ID_Bareme}}</td> #}
+                            </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                 </div>
+                </td>
+           
+                <td></td>
+            <td style='background-color: #EBEBEB; width: 300px; margin-top:50px;'>
+                        <div class='donnes__tables-secondary' style='margin-top: -8.2rem;'>
+
+                <table >
+                    <tr >
+                    <td colspan='3'  height='35px'> </td>
+                    </tr>
+                   
+                    <tr class='tr-child spaceUnder'>
+                        <td height='30px'>SITE</td>
+                        <td height='30px'>:</td>
+                        <td height='30px'>:</td>
+                        {# <td height='30px'>{{item.Etablissement}}</td> #}
+                    </tr>
+                    <tr class='tr-child spaceUnder'> 
+                        <td height='30px'>FONCTION</td>
+                        <td height='30px'>:</td>
+                        <td height='30px'>:</td>
+                        {# <td height='30px'>{{item.Fonction}}</td> #}
+                    </tr>
+                    <tr class='tr-child spaceUnder'>
+                        <td height='30px'>PERIOD DE DATE</td>
+                        <td height='30px'>:</td>
+                        <td height='30px'>:</td>
+                        {# <td height='30px'> {{ item.Période_D|slice(0, 10) }} <span class='bold'>AU</span> {{ item.Période_F|slice(0, 10) }} </td> #}
+                    </tr>
+                    <tr class='tr-child spaceUnder'>
+                        <td height='30px'>PERIODE</td>
+                        <td height='30px'>:</td>
+                        <td height='30px'>:</td>
+                        {# <td height='30px'> {{ item.Période }} </td> #}
+                    </tr>
+                    </table>
+                </div>
+            </td>
+            </div>
+            </tr>
+            </table>
+        {# {% endfor %} #}
+    </section>
+
+    <div style="margin:20px;"></div>
+
+    <table class="table_2">
+        <!-- Table content ... -->
+    </table>
+
+    <div style="margin:5px;"></div>
+
+    <div>
+        <!-- Cumulative and Net applied tables ... -->
+    </div>
+{% endblock %}
